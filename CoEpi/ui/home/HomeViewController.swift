@@ -17,6 +17,12 @@ class HomeViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: String(describing: Self.self), bundle: nil)
         self.title = self.viewModel.title
+
+        let attrs = [
+            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 18)!
+        ]
+
+        UINavigationBar.appearance().titleTextAttributes = attrs
     }
 
     required init?(coder: NSCoder) {
