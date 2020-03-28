@@ -31,6 +31,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("==Family: \(family) Font names: \(names)")
+        }
+        //==Family: Roboto Font names: ["Roboto-Regular", "Roboto-Light", "Roboto-Bold"]
+        
         let paragraphStyle = NSMutableParagraphStyle()
 
         paragraphStyle.lineHeightMultiple = 1.07
