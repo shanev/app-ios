@@ -5,6 +5,7 @@ class QuestionCell: UITableViewCell {
 
     private let checkBox: CheckBox = .init()
     private var question: Question?
+    private var customFont: UIFont!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -14,6 +15,17 @@ class QuestionCell: UITableViewCell {
             this.onChecked?(q, checked)
         }
         accessoryView = checkBox
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 18) else {
+            fatalError("""
+                Failed to load the "Roboto-Regular" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+
+        textLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
+        textLabel?.adjustsFontForContentSizeCategory = true
+        
     }
 
     required init?(coder: NSCoder) {
