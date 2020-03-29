@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         self.title = self.viewModel.title
 
         let attrs = [
-            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 18)!
+            NSAttributedString.Key.font: Fonts.robotoRegular
         ]
 
         UINavigationBar.appearance().titleTextAttributes = attrs

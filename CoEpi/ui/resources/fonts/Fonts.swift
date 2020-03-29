@@ -1,9 +1,8 @@
 //
-//  CoEpiFont.swift
-//  CoEpi
+//  Fonts.swift
 //
 //  Created by Dusko Ojdanic on 3/29/20.
-//  Copyright © 2020 org.coepi. Licensed under MIT License
+//  Copyright © 2020 coepi.org. Licensed under MIT License
 //
 // See LICENSE.txt for license information.
 //
