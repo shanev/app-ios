@@ -15,15 +15,8 @@ class QuestionCell: UITableViewCell {
             this.onChecked?(q, checked)
         }
         accessoryView = checkBox
-        guard let customFont = UIFont(name: "Roboto-Regular", size: 18) else {
-            fatalError("""
-                Failed to load the "Roboto-Regular" font.
-                Make sure the font file is included in the project and the font name is spelled correctly.
-                """
-            )
-        }
 
-        textLabel?.font = UIFontMetrics.default.scaledFont(for: customFont)
+        textLabel?.font = UIFontMetrics.default.scaledFont(for: Fonts.robotoRegular)
         textLabel?.adjustsFontForContentSizeCategory = true
         
     }

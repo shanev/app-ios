@@ -36,9 +36,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //==Family: Roboto Font names: ["Roboto-Regular", "Roboto-Light", "Roboto-Bold"]
-        
         let paragraphStyle = NSMutableParagraphStyle()
 
         paragraphStyle.lineHeightMultiple = 1.07

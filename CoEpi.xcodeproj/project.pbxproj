@@ -13,6 +13,7 @@
 		30EF950F242FA736007D61C7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF9502242FA736007D61C7 /* Roboto-Regular.ttf */; };
 		30EF9515242FA736007D61C7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30EF9508242FA736007D61C7 /* LICENSE.txt */; };
 		30EF9517242FA736007D61C7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF950A242FA736007D61C7 /* Roboto-Bold.ttf */; };
+		30EF951B2430D43E007D61C7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF951A2430D43E007D61C7 /* Fonts.swift */; };
 		8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDC6242B9AC900A63DD5 /* RxSwift */; };
 		8486BDCB242B9AC900A63DD5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCA242B9AC900A63DD5 /* RxRelay */; };
 		8486BDCD242B9AC900A63DD5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCC242B9AC900A63DD5 /* RxCocoa */; };
@@ -87,6 +88,7 @@
 		30EF9502242FA736007D61C7 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		30EF9508242FA736007D61C7 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		30EF950A242FA736007D61C7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		30EF951A2430D43E007D61C7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		324F4D7DC6C28946706D180E /* Pods-CoEpiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpiTests.release.xcconfig"; path = "Target Support Files/Pods-CoEpiTests/Pods-CoEpiTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DB73EEFE0BAFE71BAB85604 /* Pods-CoEpi-CoEpiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpi-CoEpiUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoEpi-CoEpiUITests/Pods-CoEpi-CoEpiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4AB30FDD8E48688E1BF91F91 /* Pods_CoEpi_CoEpiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoEpi_CoEpiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				30EF94FF242FA736007D61C7 /* Roboto */,
+				30EF951A2430D43E007D61C7 /* Fonts.swift */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				84BF972F24281082001ADD6B /* Central.swift in Sources */,
 				84BF972D24281082001ADD6B /* Peripheral.swift in Sources */,
 				84BF972E24281082001ADD6B /* uuids.swift in Sources */,
+				30EF951B2430D43E007D61C7 /* Fonts.swift in Sources */,
 				84BF973024281082001ADD6B /* DataRepresentable.swift in Sources */,
 				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
 				CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */,
