@@ -4,22 +4,14 @@ import Foundation
 import CoreBluetooth
 import os.log
 import UIKit
-import RxRelay
 
-struct DetectedPeripheral {
-    let uuid: UUID
-    let name: String?
+protocol CentralDelegate: class {
+    func onDiscovered(peripheral: CBPeripheral)
+    func onCentralContact(_ contact: CEN)
 }
 
-
-protocol Central {
-    var discovery: PublishRelay<DetectedPeripheral> { get }
-    var centralContactReceived: PublishRelay<ContactOld> { get }
-}
-
-class CentralImpl: NSObject, Central {
-    let discovery: PublishRelay<DetectedPeripheral> = PublishRelay()
-    let centralContactReceived: PublishRelay<ContactOld> = PublishRelay()
+class Central: NSObject {
+    private weak var delegate: CentralDelegate?
 
     private var centralManager: CBCentralManager!
 
@@ -94,7 +86,8 @@ class CentralImpl: NSObject, Central {
     }
     #endif
 
-    override init() {
+    init(delegate: CentralDelegate) {
+        self.delegate = delegate
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
@@ -141,9 +134,8 @@ class CentralImpl: NSObject, Central {
         let services = servicesToScan()
         centralManager.scanForPeripherals(
             withServices: services,
-            options: [
-                CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(booleanLiteral: true)
-            ]
+            //withServices: nil
+            options: [CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(booleanLiteral: true)]
         )
         os_log("Central manager scanning for peripherals with services=%@", log: bleCentralLog, services ?? [])
     }
@@ -266,13 +258,12 @@ class CentralImpl: NSObject, Central {
 
 }
 
-extension CentralImpl: CBCentralManagerDelegate {
+extension Central: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         os_log("Central manager did update state: %d", log: bleCentralLog, central.state.rawValue)
         if central.state == .poweredOn {
             startScan()
-            centralManager.scanForPeripherals(withServices: nil)
         }
     }
 
@@ -282,11 +273,11 @@ extension CentralImpl: CBCentralManagerDelegate {
         self.peripheral = peripheral
 //        centralManager.stopScan()
 
+        delegate?.onDiscovered(peripheral: peripheral)
+
 //        os_log("advertisementData: %@", log: bleCentralLog, advertisementData)
 
         if !discoveredPeripherals.contains(peripheral) {
-            discovery.accept(DetectedPeripheral(uuid: peripheral.identifier, name: peripheral.name))
-
             os_log(
                 "Central manager did discover new peripheral (uuid: %@ name: %@) RSSI: %d",
                 log: bleCentralLog,
@@ -322,6 +313,15 @@ extension CentralImpl: CBCentralManagerDelegate {
 
         discoverServices(for: peripheral)
     }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        os_log(
+                  "Central manager did disconnect peripheral (uuid: %@ name: %@)",
+                  log: bleCentralLog,
+                  peripheral.identifier.description,
+                  peripheral.name ?? ""
+              )
+    }
 
     private func discoverServices(for peripheral: CBPeripheral) {
         guard
@@ -336,7 +336,7 @@ extension CentralImpl: CBCentralManagerDelegate {
             peripheral.discoverServices(services)
 
             os_log(
-                "Central manager peripheral: (uuid: %@ name: %@) discovering services: %@",
+                "Central manager peripheral: (uuid: %@ name: %@) discovering services: [%@]",
                 log: bleCentralLog,
                 peripheral.identifier.description,
                 peripheral.name ?? "",
@@ -347,25 +347,28 @@ extension CentralImpl: CBCentralManagerDelegate {
         }
     }
 
-    private func addNewContactEvent(with identifier: UUID) {
-        centralContactReceived.accept(ContactOld(
-            identifier: identifier,
-            timestamp: Date(),
-            // TODO preference
-            isPotentiallyInfectious: true
+    private func addNewContactEvent(with identifier: String) {
+        print("CENTRAL: addNewContactEvent called")
+        //***** TODO: Birds of a feather
+        // Create Contact Record
+        delegate?.onCentralContact(CEN(
+            CEN: identifier,
+            timestamp: Int(Date().timeIntervalSince1970)
         ))
     }
 
     private func peripheralShared(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-
+        print("didDiscoverServices peripheralShared \(peripheral)")
         discoveringServicesPeripheralIdentifiers.remove(peripheral.identifier)
 
         guard error == nil else {
+            print("peripheralShared encountered error: \(String(describing: error))")
             cancelConnectionIfNeeded(for: peripheral)
             return
         }
 
         guard let services = peripheral.services, services.count > 0 else {
+            print("peripheralShared peripheral.services \(String(describing: peripheral.services))")
             peripheralsToReadConfigurationsFrom.remove(peripheral)
             cancelConnectionIfNeeded(for: peripheral)
             return
@@ -374,10 +377,12 @@ extension CentralImpl: CBCentralManagerDelegate {
         let servicesWithCharacteristicsToDiscover = services.filter {
             $0.characteristics == nil
         }
+        
         if servicesWithCharacteristicsToDiscover.count == 0 {
+            print("done discovering -- starting transfer")
             startTransfers(for: peripheral)
-
         } else {
+            print("still have chars to discover")
             servicesWithCharacteristicsToDiscover.forEach { service in
                 let characteristics = [ CBUUID(string: Uuids.characteristic.uuidString) ]
                 peripheral.discoverCharacteristics(characteristics, for: service)
@@ -393,10 +398,11 @@ extension CentralImpl: CBCentralManagerDelegate {
             }
         }
     }
+
 }
 
 
-extension CentralImpl: CBPeripheralDelegate {
+extension Central: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
@@ -462,6 +468,7 @@ extension CentralImpl: CBPeripheralDelegate {
 
     func peripheralShared(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
                           error: Error?) {
+        print("peripheralShared didDiscoverCharacteristicsFor service: \(service) char \(String(describing: service.characteristics?.first))")
         guard error == nil else {
             cancelConnectionIfNeeded(for: peripheral)
             return
@@ -475,7 +482,8 @@ extension CentralImpl: CBPeripheralDelegate {
             if !readingConfigurationCharacteristics.contains(configurationCharacteristic) {
                 readingConfigurationCharacteristics.insert(configurationCharacteristic)
                 peripheral.readValue(for: configurationCharacteristic)
-
+                //needed for Android
+                peripheral.writeValue(configurationCharacteristic.value!, for: configurationCharacteristic, type: .withoutResponse)
                 os_log(
                     "Peripheral (uuid: %@ name: %@) reading value for characteristic: %@ for service: %@",
                     log: bleCentralLog,
@@ -515,6 +523,7 @@ extension CentralImpl: CBPeripheralDelegate {
                 characteristic.description,
                 characteristic.service.description
             )
+            print("characteristic value: \(String(describing: characteristic.value!))")
         }
         readingConfigurationCharacteristics.remove(characteristic)
 
@@ -527,8 +536,10 @@ extension CentralImpl: CBPeripheralDelegate {
             guard let value = characteristic.value else {
                 throw CBATTError(.invalidPdu)
             }
-            let identifier = try UUID(dataRepresentation: value)
-            addNewContactEvent(with: identifier)
+            var identifier = String(bytes: value, encoding: .unicode)
+            identifier = value.compactMap { String(format: "%02x", $0) }.joined()
+            print("NSString ID: \(String(describing: identifier))")
+            addNewContactEvent(with: String(identifier!))
             cancelConnectionIfNeeded(for: peripheral)
 
         } catch {
@@ -562,6 +573,7 @@ extension CentralImpl: CBPeripheralDelegate {
         }
     }
 }
+
 
 extension TimeInterval {
     public static let peripheralConnectingTimeout: TimeInterval = 8
