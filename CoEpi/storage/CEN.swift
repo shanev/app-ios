@@ -4,11 +4,11 @@ import RealmSwift
 
 struct CEN : Codable {
     var CEN: String
-    var timestamp: Int = Int(Date().timeIntervalSince1970)
+    var timestamp: Int64 = Int64(Date().timeIntervalSince1970)
     var latitude: Double? = nil
     var longitude: Double? = nil
     
-    static func generateCENData(CENKey : String, currentTs : Int)  -> Data {
+    static func generateCENData(CENKey : String, currentTs : Int64)  -> Data {
         // decode the base64 encoded key
         let decodedCENKey:Data = Data(base64Encoded: CENKey)!
         

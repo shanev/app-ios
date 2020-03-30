@@ -97,7 +97,7 @@ extension Peripheral: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         os_log("Peripheral manager did receive read request: %@", log: blePeripheralLog, request.description)
         
-        let currentTimestamp = Int(Date().timeIntervalSince1970)
+        let currentTimestamp = Int64(Date().timeIntervalSince1970)
         let currentCENKey = CENKey.generateAndStoreCENKey()
         let CENData: Data = CEN.generateCENData(CENKey: currentCENKey.cenKey!, currentTs: currentTimestamp)
         //*** Scenario 1: https://docs.google.com/document/d/1f65V3PI214-uYfZLUZtm55kdVwoazIMqGJrxcYNI4eg/edit#

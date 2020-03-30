@@ -4,16 +4,16 @@ import RealmSwift
 import Security
 
 struct CENKey : Codable {
-    var timestamp: Int = Int(Date().timeIntervalSince1970)
+    var timestamp: Int64 = Int64(Date().timeIntervalSince1970)
     var cenKey: String?
     
     //static var cenKey: String = ""
-    static var cenKeyTimestamp: Int = 0
+    static var cenKeyTimestamp: Int64 = 0
     
     static func generateAndStoreCENKey() -> CENKey {
         //Retrieve last cenKey and cenKeyTimestamp from CENKey
         let latestCENKey = getLatestCENKey()
-        let curTimestamp = Int(Date().timeIntervalSince1970)
+        let curTimestamp = Int64(Date().timeIntervalSince1970)
         if ( ( cenKeyTimestamp == 0 ) || ( roundedTimestamp(ts: curTimestamp) > roundedTimestamp(ts: cenKeyTimestamp) ) ) {
             //generate a new AES Key and store it in local storage
             
@@ -57,7 +57,7 @@ struct CENKey : Codable {
         }
     }
     
-    static func getCENKeys(limit: Int) -> [CENKey]? {
+    static func getCENKeys(limit: Int64) -> [CENKey]? {
         let realm = try! Realm()
         let cenKeysObject = realm.objects(DBCENKey.self).sorted(byKeyPath: "timestamp", ascending: false)
         if cenKeysObject.count == 0 {

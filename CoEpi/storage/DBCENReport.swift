@@ -14,7 +14,7 @@ final class DBCENReport : Object {
 
     // The MIME Type of the above data, enabling everyone to build apps with different format
     @objc dynamic var reportMimeType: String? = ""
-    @objc dynamic var reportTimestamp: Int = 0
+    @objc dynamic var reportTimestamp: Int64 = 0
 
     // isuser is true when the reporter is this user
     @objc dynamic var isUser: Bool = false
@@ -23,7 +23,7 @@ final class DBCENReport : Object {
         return "CENReportID"
     }
     
-    required init(_report: String, _cenKeys: String, _ts: Int) {
+    required init(_report: String, _cenKeys: String, _ts: Int64) {
         self.CENReportID = NSUUID().uuidString
         self.report = _report
         self.CENKeys = _cenKeys

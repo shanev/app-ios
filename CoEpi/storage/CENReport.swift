@@ -2,12 +2,12 @@ import Foundation
 import RealmSwift
 
 struct CENReport : Codable {
-    var CENReportID: String = ""
-    var report: String = ""
-    var reportMimeType: String = ""
-    var reportTimestamp: Int = 0
-    var CENKeys: String = ""
-    var isUser: Bool = false
+    let CENReportID: String
+    let report: String
+    let reportMimeType: String
+    let reportTimestamp: Int64
+    let CENKeys: String
+    let isUser: Bool
     
     func insert() -> Bool {
         let realm = try! Realm()

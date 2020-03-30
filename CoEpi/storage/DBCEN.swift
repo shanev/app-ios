@@ -2,7 +2,7 @@ import RealmSwift
 
 final class DBCEN : Object {
     @objc dynamic var CEN: String = ""
-    @objc dynamic var timestamp: Int = Int(Date().timeIntervalSince1970)
+    @objc dynamic var timestamp: Int64 = Int64(Date().timeIntervalSince1970)
     var latitude: Double? = nil
     var longitude: Double? = nil
     
@@ -10,7 +10,7 @@ final class DBCEN : Object {
         return "CEN"
     }
     
-    required init(_cen: String, _ts: Int) {
+    required init(_cen: String, _ts: Int64) {
         self.CEN = _cen
         self.timestamp = _ts
     }
