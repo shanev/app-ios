@@ -168,7 +168,10 @@ class Central: NSObject {
 
     private func connectIfNeeded(peripheral: CBPeripheral) {
         if peripheral.state != .connected && peripheral.state != .connecting {
-            centralManager?.connect(peripheral, options: nil)
+            centralManager?.connect(peripheral, options: [CBConnectPeripheralOptionNotifyOnConnectionKey:true])
+            
+            //Background Support Strategy:
+            // consider adding?: CBConnectPeripheralOptionNotifyOnConnectionKey as an option (originally options was nil) will cause the system to display an alert for a given peripheral if the app is suspended (different from background, I believe) when a successful connection is made.
 
             os_log(
                 "Central manager connecting peripheral (uuid: %@ name: %@)",
@@ -348,8 +351,6 @@ extension Central: CBCentralManagerDelegate {
     }
 
     private func addNewContactEvent(with identifier: String) {
-        print("CENTRAL: addNewContactEvent called")
-        //***** TODO: Birds of a feather
         // Create Contact Record
         delegate?.onCentralContact(CEN(
             CEN: identifier,
@@ -379,10 +380,8 @@ extension Central: CBCentralManagerDelegate {
         }
         
         if servicesWithCharacteristicsToDiscover.count == 0 {
-            print("done discovering -- starting transfer")
             startTransfers(for: peripheral)
         } else {
-            print("still have chars to discover")
             servicesWithCharacteristicsToDiscover.forEach { service in
                 let characteristics = [ CBUUID(string: Uuids.characteristic.uuidString) ]
                 peripheral.discoverCharacteristics(characteristics, for: service)
@@ -482,7 +481,7 @@ extension Central: CBPeripheralDelegate {
             if !readingConfigurationCharacteristics.contains(configurationCharacteristic) {
                 readingConfigurationCharacteristics.insert(configurationCharacteristic)
                 peripheral.readValue(for: configurationCharacteristic)
-                
+                print("properties of the read characteristic are: \(configurationCharacteristic.properties)")
                 os_log(
                     "Peripheral (uuid: %@ name: %@) reading value for characteristic: %@ for service: %@",
                     log: bleCentralLog,
@@ -522,8 +521,7 @@ extension Central: CBPeripheralDelegate {
                 characteristic.description,
                 characteristic.service.description
             )
-            
-            //needed for Android -- this is ignored for Android
+            //needed for Android
             peripheral.writeValue(characteristic.value!, for: characteristic, type: .withoutResponse)
             print("characteristic value: \(String(describing: characteristic.value!))")
         }
