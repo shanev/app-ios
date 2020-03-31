@@ -40,7 +40,7 @@ extension RootWireFrame : HomeViewModelDelegate {
         let debugViewModel: DebugViewModel = try! container.resolve()
 
         let debugViewController = DebugViewController(viewModel: debugViewModel)
-        homeViewController?.present(debugViewController, animated: true, completion: nil)
+        rootNavigationController.pushViewController(debugViewController, animated: true)
     }
     
     func checkInTapped() {
@@ -56,15 +56,15 @@ extension RootWireFrame : HomeViewModelDelegate {
         rootNavigationController.pushViewController(quizViewController, animated: true)
     }
     
-    func seeAlertsTapped(){
+    func seeAlertsTapped() {
         showAlerts()
     }
     
-    private func showAlerts(){
-        let alertsViewController = AlertsViewController.init(nibName: String(describing:AlertsViewController.self), bundle: nil
-               )
-               alertsViewController.title = "Alerts"
-               rootNavigationController.pushViewController(alertsViewController, animated: true)
+    private func showAlerts() {
+        let viewModel: AlertsViewModel = try! container.resolve()
+
+        let alertsViewController = AlertsViewController(viewModel: viewModel)
+        rootNavigationController.pushViewController(alertsViewController, animated: true)
         
     }
 }

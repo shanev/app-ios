@@ -9,16 +9,19 @@
 /* Begin PBXBuildFile section */
 		30EF94FB242CFC9F007D61C7 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF94F9242CFC9F007D61C7 /* AlertsViewController.swift */; };
 		30EF94FC242CFC9F007D61C7 /* AlertsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30EF94FA242CFC9F007D61C7 /* AlertsViewController.xib */; };
-		30EF953324329E8D007D61C7 /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF972324280ABA001ADD6B /* RootWireframe.swift */; };
-		30EF953424329F0B007D61C7 /* HealthQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */; };
-		30EF953D2432A5D0007D61C7 /* CEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95362432A5CF007D61C7 /* CEN.swift */; };
-		30EF953E2432A5D0007D61C7 /* DBCENReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95372432A5CF007D61C7 /* DBCENReport.swift */; };
-		30EF953F2432A5D0007D61C7 /* DBCEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95382432A5CF007D61C7 /* DBCEN.swift */; };
-		30EF95402432A5D0007D61C7 /* DBCENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95392432A5CF007D61C7 /* DBCENKey.swift */; };
-		30EF95412432A5D0007D61C7 /* CENReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF953A2432A5CF007D61C7 /* CENReport.swift */; };
-		30EF95422432A5D0007D61C7 /* CENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF953B2432A5CF007D61C7 /* CENKey.swift */; };
-		30EF95432432A5D0007D61C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF953C2432A5CF007D61C7 /* Utils.swift */; };
-		30EF95462432C8D8007D61C7 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30EF95452432C8D8007D61C7 /* CryptoSwift */; };
+		30EF952E24313F61007D61C7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF952824313F61007D61C7 /* Fonts.swift */; };
+		30EF952F24313F61007D61C7 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952A24313F61007D61C7 /* Roboto-Light.ttf */; };
+		30EF953024313F61007D61C7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952B24313F61007D61C7 /* Roboto-Regular.ttf */; };
+		30EF953124313F61007D61C7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952C24313F61007D61C7 /* LICENSE.txt */; };
+		30EF953224313F61007D61C7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952D24313F61007D61C7 /* Roboto-Bold.ttf */; };
+		30EF95522432DF4D007D61C7 /* CEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954B2432DF4D007D61C7 /* CEN.swift */; };
+		30EF95532432DF4D007D61C7 /* DBCENReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954C2432DF4D007D61C7 /* DBCENReport.swift */; };
+		30EF95542432DF4D007D61C7 /* DBCEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954D2432DF4D007D61C7 /* DBCEN.swift */; };
+		30EF95552432DF4D007D61C7 /* DBCENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954E2432DF4D007D61C7 /* DBCENKey.swift */; };
+		30EF95562432DF4D007D61C7 /* CENReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954F2432DF4D007D61C7 /* CENReport.swift */; };
+		30EF95572432DF4D007D61C7 /* CENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95502432DF4D007D61C7 /* CENKey.swift */; };
+		30EF95582432DF4D007D61C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95512432DF4D007D61C7 /* Utils.swift */; };
+		30EF955B2432E009007D61C7 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30EF955A2432E009007D61C7 /* CryptoSwift */; };
 		8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDC6242B9AC900A63DD5 /* RxSwift */; };
 		8486BDCB242B9AC900A63DD5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCA242B9AC900A63DD5 /* RxRelay */; };
 		8486BDCD242B9AC900A63DD5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCC242B9AC900A63DD5 /* RxCocoa */; };
@@ -50,6 +53,7 @@
 		84A4B9BC242CE42C00516F3B /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B9BB242CE42C00516F3B /* Symptom.swift */; };
 		84BF97202427FAF1001ADD6B /* OnboardingWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF971F2427FAF1001ADD6B /* OnboardingWireframe.swift */; };
 		84BF97222427FCFE001ADD6B /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF97212427FCFE001ADD6B /* OnboardingViewModel.swift */; };
+		84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF972324280ABA001ADD6B /* RootWireframe.swift */; };
 		84BF972C24281082001ADD6B /* LogSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF972624281082001ADD6B /* LogSettings.swift */; };
 		84BF972D24281082001ADD6B /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF972724281082001ADD6B /* Peripheral.swift */; };
 		84BF972E24281082001ADD6B /* uuids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF972824281082001ADD6B /* uuids.swift */; };
@@ -63,6 +67,13 @@
 		84FA01002427ED5E00318104 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA00FE2427ED5E00318104 /* HomeViewController.swift */; };
 		84FA01012427ED5E00318104 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA00FF2427ED5E00318104 /* HomeViewController.xib */; };
 		CC71F7CAF64914F41BBE05C5 /* Pods_CoEpi_CoEpiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB30FDD8E48688E1BF91F91 /* Pods_CoEpi_CoEpiUITests.framework */; };
+		CE626E092430A98B000DB8E7 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE626E082430A98B000DB8E7 /* AlertsViewModel.swift */; };
+		CE626E0B2430A9A9000DB8E7 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE626E0A2430A9A9000DB8E7 /* AlertCell.swift */; };
+		CE626E0E2430B911000DB8E7 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE626E0D2430B911000DB8E7 /* AlertView.xib */; };
+		CE626E102430F0FB000DB8E7 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE626E0F2430F0FB000DB8E7 /* UIView+Nib.swift */; };
+		CE626E122430F348000DB8E7 /* AlertRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE626E112430F348000DB8E7 /* AlertRepo.swift */; };
+		CE626E142430F3C5000DB8E7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE626E132430F3C5000DB8E7 /* Alert.swift */; };
+		CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */; };
 		CE98BE9B242DDCFD00EFB67A /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE9A242DDCFD00EFB67A /* QuestionCell.swift */; };
 		CE98BE9F242DE02900EFB67A /* HealthQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE98BE9E242DE02900EFB67A /* HealthQuizViewController.xib */; };
 		CE98BEA1242DE23400EFB67A /* HealthQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BEA0242DE23400EFB67A /* HealthQuizViewController.swift */; };
@@ -114,16 +125,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30EF94F9242CFC9F007D61C7 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertsViewController.swift; path = home/AlertsViewController.swift; sourceTree = "<group>"; };
-		30EF94FA242CFC9F007D61C7 /* AlertsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlertsViewController.xib; path = home/AlertsViewController.xib; sourceTree = "<group>"; };
-		30EF95362432A5CF007D61C7 /* CEN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEN.swift; sourceTree = "<group>"; };
-		30EF95372432A5CF007D61C7 /* DBCENReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCENReport.swift; sourceTree = "<group>"; };
-		30EF95382432A5CF007D61C7 /* DBCEN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCEN.swift; sourceTree = "<group>"; };
-		30EF95392432A5CF007D61C7 /* DBCENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCENKey.swift; sourceTree = "<group>"; };
-		30EF953A2432A5CF007D61C7 /* CENReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CENReport.swift; sourceTree = "<group>"; };
-		30EF953B2432A5CF007D61C7 /* CENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CENKey.swift; sourceTree = "<group>"; };
-		30EF953C2432A5CF007D61C7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		30EF95482432D7E9007D61C7 /* CoEpiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoEpiAPI.swift; sourceTree = "<group>"; };
+		30EF94F9242CFC9F007D61C7 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
+		30EF94FA242CFC9F007D61C7 /* AlertsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertsViewController.xib; sourceTree = "<group>"; };
+		30EF952824313F61007D61C7 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		30EF952A24313F61007D61C7 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		30EF952B24313F61007D61C7 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		30EF952C24313F61007D61C7 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		30EF952D24313F61007D61C7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		30EF954B2432DF4D007D61C7 /* CEN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEN.swift; sourceTree = "<group>"; };
+		30EF954C2432DF4D007D61C7 /* DBCENReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCENReport.swift; sourceTree = "<group>"; };
+		30EF954D2432DF4D007D61C7 /* DBCEN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCEN.swift; sourceTree = "<group>"; };
+		30EF954E2432DF4D007D61C7 /* DBCENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCENKey.swift; sourceTree = "<group>"; };
+		30EF954F2432DF4D007D61C7 /* CENReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CENReport.swift; sourceTree = "<group>"; };
+		30EF95502432DF4D007D61C7 /* CENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CENKey.swift; sourceTree = "<group>"; };
+		30EF95512432DF4D007D61C7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		324F4D7DC6C28946706D180E /* Pods-CoEpiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpiTests.release.xcconfig"; path = "Target Support Files/Pods-CoEpiTests/Pods-CoEpiTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DB73EEFE0BAFE71BAB85604 /* Pods-CoEpi-CoEpiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpi-CoEpiUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoEpi-CoEpiUITests/Pods-CoEpi-CoEpiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4AB30FDD8E48688E1BF91F91 /* Pods_CoEpi_CoEpiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoEpi_CoEpiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +189,12 @@
 		89B1FB101DD42773F3ADB2EC /* Pods_CoEpiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoEpiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		910DD69A29B6DF9226FCFECA /* Pods-CoEpiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpiTests.debug.xcconfig"; path = "Target Support Files/Pods-CoEpiTests/Pods-CoEpiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C12F75FF3B79C829E72E1CF6 /* Pods-CoEpi-CoEpiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpi-CoEpiUITests.release.xcconfig"; path = "Target Support Files/Pods-CoEpi-CoEpiUITests/Pods-CoEpi-CoEpiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CE626E082430A98B000DB8E7 /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
+		CE626E0A2430A9A9000DB8E7 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
+		CE626E0D2430B911000DB8E7 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		CE626E0F2430F0FB000DB8E7 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		CE626E112430F348000DB8E7 /* AlertRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRepo.swift; sourceTree = "<group>"; };
+		CE626E132430F3C5000DB8E7 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthQuizViewModel.swift; sourceTree = "<group>"; };
 		CE98BE9A242DDCFD00EFB67A /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		CE98BE9E242DE02900EFB67A /* HealthQuizViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthQuizViewController.xib; sourceTree = "<group>"; };
@@ -194,7 +215,7 @@
 			files = (
 				84A4B9A9242CA4D500516F3B /* RealmSwift in Frameworks */,
 				84A4B9A7242CA4D500516F3B /* Realm in Frameworks */,
-				30EF95462432C8D8007D61C7 /* CryptoSwift in Frameworks */,
+				30EF955B2432E009007D61C7 /* CryptoSwift in Frameworks */,
 				8486BDCD242B9AC900A63DD5 /* RxCocoa in Frameworks */,
 				8486BDCB242B9AC900A63DD5 /* RxRelay in Frameworks */,
 				8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */,
@@ -223,26 +244,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30EF95352432A5CF007D61C7 /* storage */ = {
+		30EF952624313F61007D61C7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				30EF95362432A5CF007D61C7 /* CEN.swift */,
-				30EF95372432A5CF007D61C7 /* DBCENReport.swift */,
-				30EF95382432A5CF007D61C7 /* DBCEN.swift */,
-				30EF95392432A5CF007D61C7 /* DBCENKey.swift */,
-				30EF953A2432A5CF007D61C7 /* CENReport.swift */,
-				30EF953B2432A5CF007D61C7 /* CENKey.swift */,
-				30EF953C2432A5CF007D61C7 /* Utils.swift */,
+				30EF952724313F61007D61C7 /* fonts */,
 			);
-			path = storage;
+			path = resources;
 			sourceTree = "<group>";
 		};
-		30EF95472432D7E9007D61C7 /* coepiapiservice */ = {
+		30EF952724313F61007D61C7 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				30EF95482432D7E9007D61C7 /* CoEpiAPI.swift */,
+				30EF952824313F61007D61C7 /* Fonts.swift */,
+				30EF952924313F61007D61C7 /* Roboto */,
 			);
-			path = coepiapiservice;
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		30EF952924313F61007D61C7 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				30EF952A24313F61007D61C7 /* Roboto-Light.ttf */,
+				30EF952B24313F61007D61C7 /* Roboto-Regular.ttf */,
+				30EF952C24313F61007D61C7 /* LICENSE.txt */,
+				30EF952D24313F61007D61C7 /* Roboto-Bold.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		30EF954A2432DF4D007D61C7 /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				30EF954B2432DF4D007D61C7 /* CEN.swift */,
+				30EF954C2432DF4D007D61C7 /* DBCENReport.swift */,
+				30EF954D2432DF4D007D61C7 /* DBCEN.swift */,
+				30EF954E2432DF4D007D61C7 /* DBCENKey.swift */,
+				30EF954F2432DF4D007D61C7 /* CENReport.swift */,
+				30EF95502432DF4D007D61C7 /* CENKey.swift */,
+				30EF95512432DF4D007D61C7 /* Utils.swift */,
+			);
+			path = storage;
 			sourceTree = "<group>";
 		};
 		44CF83504F0FD8582FEC242D /* Pods */ = {
@@ -293,8 +334,7 @@
 		849DFE642427D3750008ED65 /* CoEpi */ = {
 			isa = PBXGroup;
 			children = (
-				30EF95472432D7E9007D61C7 /* coepiapiservice */,
-				30EF95352432A5CF007D61C7 /* storage */,
+				30EF954A2432DF4D007D61C7 /* storage */,
 				84A4B9B3242CA6CC00516F3B /* domain */,
 				84A4B9A2242C9C8B00516F3B /* repo */,
 				84BF972524280ECF001ADD6B /* ble */,
@@ -334,6 +374,7 @@
 				84A4B9B0242CA66A00516F3B /* realm */,
 				84A4B9A3242CA24100516F3B /* ContactRepo.swift */,
 				84A4B9B9242CE3AF00516F3B /* SymptomRepo.swift */,
+				CE626E112430F348000DB8E7 /* AlertRepo.swift */,
 			);
 			path = repo;
 			sourceTree = "<group>";
@@ -370,6 +411,7 @@
 			children = (
 				84A4B9B5242CA6EE00516F3B /* Contact.swift */,
 				84A4B9BB242CE42C00516F3B /* Symptom.swift */,
+				CE626E132430F3C5000DB8E7 /* Alert.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -390,15 +432,15 @@
 		84FA00F82427EC4300318104 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				30EF952624313F61007D61C7 /* resources */,
 				D41B0D0A242F47F000A50447 /* theme */,
 				8486BDD2242BA18400A63DD5 /* debug */,
 				84FA01412427F04800318104 /* extensions */,
 				84FA01432427F05500318104 /* home */,
 				84FA01422427F04E00318104 /* onboarding */,
 				CE98BE97242DDC3D00EFB67A /* healthquiz */,
+				CE626E072430A787000DB8E7 /* alerts */,
 				84BF972324280ABA001ADD6B /* RootWireframe.swift */,
-				30EF94F9242CFC9F007D61C7 /* AlertsViewController.swift */,
-				30EF94FA242CFC9F007D61C7 /* AlertsViewController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -409,6 +451,7 @@
 				D41B0D16242F5A2A00A50447 /* UIColor+Hex.swift */,
 				8486BDE3242BF9F500A63DD5 /* UITableView+ReuseIdentifier.swift */,
 				8486BDE5242BFAE700A63DD5 /* UITableCell+ReuseIdentifier.swift */,
+				CE626E0F2430F0FB000DB8E7 /* UIView+Nib.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -446,6 +489,18 @@
 				89B1FB101DD42773F3ADB2EC /* Pods_CoEpiTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE626E072430A787000DB8E7 /* alerts */ = {
+			isa = PBXGroup;
+			children = (
+				30EF94F9242CFC9F007D61C7 /* AlertsViewController.swift */,
+				30EF94FA242CFC9F007D61C7 /* AlertsViewController.xib */,
+				CE626E082430A98B000DB8E7 /* AlertsViewModel.swift */,
+				CE626E0A2430A9A9000DB8E7 /* AlertCell.swift */,
+				CE626E0D2430B911000DB8E7 /* AlertView.xib */,
+			);
+			path = alerts;
 			sourceTree = "<group>";
 		};
 		CE98BE97242DDC3D00EFB67A /* healthquiz */ = {
@@ -502,7 +557,7 @@
 				8486BDCE242B9AC900A63DD5 /* RxBlocking */,
 				84A4B9A6242CA4D500516F3B /* Realm */,
 				84A4B9A8242CA4D500516F3B /* RealmSwift */,
-				30EF95452432C8D8007D61C7 /* CryptoSwift */,
+				30EF955A2432E009007D61C7 /* CryptoSwift */,
 			);
 			productName = CoEpi;
 			productReference = 849DFE622427D3750008ED65 /* CoEpi.app */;
@@ -583,7 +638,7 @@
 				84FA00F32427E83000318104 /* XCRemoteSwiftPackageReference "Dip" */,
 				8486BDC5242B9AC900A63DD5 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				84A4B9A5242CA4D500516F3B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				30EF95442432C8D8007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				30EF95592432E009007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = 849DFE632427D3750008ED65 /* Products */;
 			projectDirPath = "";
@@ -605,8 +660,13 @@
 				849DFE752427D37A0008ED65 /* LaunchScreen.storyboard in Resources */,
 				CE98BE9F242DE02900EFB67A /* HealthQuizViewController.xib in Resources */,
 				849DFE722427D37A0008ED65 /* Assets.xcassets in Resources */,
+				30EF953224313F61007D61C7 /* Roboto-Bold.ttf in Resources */,
 				84FA01012427ED5E00318104 /* HomeViewController.xib in Resources */,
+				CE626E0E2430B911000DB8E7 /* AlertView.xib in Resources */,
 				84FA00FC2427ED1900318104 /* OnboardingViewController.xib in Resources */,
+				30EF953024313F61007D61C7 /* Roboto-Regular.ttf in Resources */,
+				30EF952F24313F61007D61C7 /* Roboto-Light.ttf in Resources */,
+				30EF953124313F61007D61C7 /* LICENSE.txt in Resources */,
 				8486BDDA242BBCE700A63DD5 /* DebugViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,49 +797,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30EF953424329F0B007D61C7 /* HealthQuizViewModel.swift in Sources */,
-				30EF953324329E8D007D61C7 /* RootWireframe.swift in Sources */,
-				30EF953F2432A5D0007D61C7 /* DBCEN.swift in Sources */,
+				CE626E0B2430A9A9000DB8E7 /* AlertCell.swift in Sources */,
 				84A4B9AD242CA51D00516F3B /* RealmContact.swift in Sources */,
 				84A4B9B6242CA6EE00516F3B /* Contact.swift in Sources */,
 				8486BDE0242BC8B600A63DD5 /* HomeViewModel.swift in Sources */,
 				849CEFA3242FEE23003F9284 /* UIColor+Hex.swift in Sources */,
-				30EF95432432A5D0007D61C7 /* Utils.swift in Sources */,
 				84FA00FB2427ED1900318104 /* OnboardingViewController.swift in Sources */,
 				84A4B9AF242CA5E600516F3B /* RealmProvider.swift in Sources */,
 				84A4B9BC242CE42C00516F3B /* Symptom.swift in Sources */,
 				84BF97202427FAF1001ADD6B /* OnboardingWireframe.swift in Sources */,
-				30EF95422432A5D0007D61C7 /* CENKey.swift in Sources */,
+				30EF95562432DF4D007D61C7 /* CENReport.swift in Sources */,
 				8486BDE4242BF9F500A63DD5 /* UITableView+ReuseIdentifier.swift in Sources */,
+				CE626E092430A98B000DB8E7 /* AlertsViewModel.swift in Sources */,
 				84BF972C24281082001ADD6B /* LogSettings.swift in Sources */,
 				84A4B9A4242CA24100516F3B /* ContactRepo.swift in Sources */,
 				D41B0CDC242E467800A50447 /* OnboardingButton.swift in Sources */,
 				84A4B9BA242CE3AF00516F3B /* SymptomRepo.swift in Sources */,
 				849DFE662427D3750008ED65 /* AppDelegate.swift in Sources */,
-				30EF953D2432A5D0007D61C7 /* CEN.swift in Sources */,
 				84BF97222427FCFE001ADD6B /* OnboardingViewModel.swift in Sources */,
 				84BF972F24281082001ADD6B /* Central.swift in Sources */,
+				CE626E142430F3C5000DB8E7 /* Alert.swift in Sources */,
 				84BF972D24281082001ADD6B /* Peripheral.swift in Sources */,
-				30EF953E2432A5D0007D61C7 /* DBCENReport.swift in Sources */,
+				30EF95542432DF4D007D61C7 /* DBCEN.swift in Sources */,
+				30EF95532432DF4D007D61C7 /* DBCENReport.swift in Sources */,
+				CE626E102430F0FB000DB8E7 /* UIView+Nib.swift in Sources */,
 				84BF972E24281082001ADD6B /* uuids.swift in Sources */,
 				84BF973024281082001ADD6B /* DataRepresentable.swift in Sources */,
-				30EF95412432A5D0007D61C7 /* CENReport.swift in Sources */,
-				30EF95402432A5D0007D61C7 /* DBCENKey.swift in Sources */,
 				D41B0D1F242F60CF00A50447 /* OnboardingStrings.swift in Sources */,
 				D41B0D1B242F5BDA00A50447 /* StringMarkupAttributedExtension.swift in Sources */,
+				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
 				D41B0CDD242E467800A50447 /* GradientView.swift in Sources */,
+				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
+				CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */,
+				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
+				CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */,
 				84BF973124281082001ADD6B /* Types+DataRepresentable.swift in Sources */,
 				8486BDD6242BA28C00A63DD5 /* DebugViewModel.swift in Sources */,
 				CE98BEA1242DE23400EFB67A /* HealthQuizViewController.swift in Sources */,
+				30EF95552432DF4D007D61C7 /* DBCENKey.swift in Sources */,
+				30EF95572432DF4D007D61C7 /* CENKey.swift in Sources */,
 				84A4B9B8242CC97600516F3B /* RealmRepo.swift in Sources */,
 				849CEFA2242FEDE7003F9284 /* Theme.swift in Sources */,
 				84A4B9B2242CA67E00516F3B /* RealmContactRepo.swift in Sources */,
+				30EF95582432DF4D007D61C7 /* Utils.swift in Sources */,
+				30EF952E24313F61007D61C7 /* Fonts.swift in Sources */,
 				849DFE702427D3750008ED65 /* CoEpi.xcdatamodeld in Sources */,
 				30EF94FB242CFC9F007D61C7 /* AlertsViewController.swift in Sources */,
 				8486BDD9242BBCE700A63DD5 /* DebugViewController.swift in Sources */,
 				8486BDE6242BFAE700A63DD5 /* UITableCell+ReuseIdentifier.swift in Sources */,
+				CE626E122430F348000DB8E7 /* AlertRepo.swift in Sources */,
 				84FA00F22427E13000318104 /* Dependencies.swift in Sources */,
 				CE98BE9B242DDCFD00EFB67A /* QuestionCell.swift in Sources */,
+				30EF95522432DF4D007D61C7 /* CEN.swift in Sources */,
 				84FA01002427ED5E00318104 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -898,7 +967,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -952,7 +1021,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -971,7 +1040,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SQAPAYXXBX;
 				INFOPLIST_FILE = CoEpi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -993,7 +1062,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SQAPAYXXBX;
 				INFOPLIST_FILE = CoEpi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1017,7 +1086,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VU7B7BR34W;
 				INFOPLIST_FILE = CoEpiTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1044,7 +1113,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VU7B7BR34W;
 				INFOPLIST_FILE = CoEpiTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1152,7 +1221,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		30EF95442432C8D8007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+		30EF95592432E009007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
 			requirement = {
@@ -1187,9 +1256,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		30EF95452432C8D8007D61C7 /* CryptoSwift */ = {
+		30EF955A2432E009007D61C7 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 30EF95442432C8D8007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			package = 30EF95592432E009007D61C7 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
 		};
 		8486BDC6242B9AC900A63DD5 /* RxSwift */ = {

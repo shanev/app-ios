@@ -3,19 +3,22 @@ import CoreBluetooth
 import os.log
 import RxRelay
 
+
 protocol PeripheralDelegate: class {
     func onPeripheralStateChange(description: String)
     func onPeripheralContact(_ contact: CEN)
 }
 
 protocol PeripheralReactive {
-    var peripheralState: PublishRelay<String> { get }
+    var peripheralState: BehaviorRelay<String> { get }
+
     var peripheralContactSent: PublishRelay<ContactOld> { get }
     var delegate: PeripheralDelegate? {get set}
 }
 
+
 class PeripheralImpl: NSObject, PeripheralReactive {
-    let peripheralState: PublishRelay<String> = PublishRelay()
+    let peripheralState: BehaviorRelay<String> = BehaviorRelay(value: "unknown")
     let peripheralContactSent: PublishRelay<ContactOld> = PublishRelay()
     weak var delegate: PeripheralDelegate?
 
