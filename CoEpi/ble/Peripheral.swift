@@ -30,7 +30,6 @@ class PeripheralImpl: NSObject, PeripheralReactive {
     }
 
     private func startAdvertising() {
-        print("calling startAdvertising")
         let service = createService()
         peripheralManager.add(service)
 
@@ -106,9 +105,8 @@ extension PeripheralImpl: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         os_log("Peripheral manager did receive read request: %@", log: blePeripheralLog, request.description)
         
-        let currentTimestamp = Int64(Date().timeIntervalSince1970)
         let currentCENKey = CENKey.generateAndStoreCENKey()
-        let CENData: Data = CEN.generateCENData(CENKey: currentCENKey.cenKey!, currentTs: currentTimestamp)
+        let CENData: Data = CEN.generateCENData(CENKey: currentCENKey.cenKey!)
         //*** Scenario 1: https://docs.google.com/document/d/1f65V3PI214-uYfZLUZtm55kdVwoazIMqGJrxcYNI4eg/edit#
         // iOS - Central + iOS - Peripheral -- so commenting out addNewContact
         //addNewContactEvent(with: identifier)
