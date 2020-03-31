@@ -134,8 +134,9 @@ class Central: NSObject {
         let services = servicesToScan()
         centralManager.scanForPeripherals(
             withServices: services,
-            //withServices: nil
-            options: [CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(booleanLiteral: true)]
+            options: [
+                CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(booleanLiteral: true)
+            ]
         )
         os_log("Central manager scanning for peripherals with services=%@", log: bleCentralLog, services ?? [])
     }
@@ -171,7 +172,7 @@ class Central: NSObject {
             centralManager?.connect(peripheral, options: [CBConnectPeripheralOptionNotifyOnConnectionKey:true])
             
             //Background Support Strategy:
-            // consider adding?: CBConnectPeripheralOptionNotifyOnConnectionKey as an option (originally options was nil) will cause the system to display an alert for a given peripheral if the app is suspended (different from background, I believe) when a successful connection is made.
+            // adding: CBConnectPeripheralOptionNotifyOnConnectionKey as an option (originally options was nil) will cause the system to display an alert for a given peripheral if the app is suspended (different from background, I believe) when a successful connection is made.
 
             os_log(
                 "Central manager connecting peripheral (uuid: %@ name: %@)",
@@ -279,7 +280,7 @@ extension Central: CBCentralManagerDelegate {
         delegate?.onDiscovered(peripheral: peripheral)
 
 //        os_log("advertisementData: %@", log: bleCentralLog, advertisementData)
-
+        
         if !discoveredPeripherals.contains(peripheral) {
             os_log(
                 "Central manager did discover new peripheral (uuid: %@ name: %@) RSSI: %d",
@@ -354,22 +355,19 @@ extension Central: CBCentralManagerDelegate {
         // Create Contact Record
         delegate?.onCentralContact(CEN(
             CEN: identifier,
-            timestamp: Int(Date().timeIntervalSince1970)
+            timestamp: Int64(Date().timeIntervalSince1970)
         ))
     }
 
     private func peripheralShared(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("didDiscoverServices peripheralShared \(peripheral)")
         discoveringServicesPeripheralIdentifiers.remove(peripheral.identifier)
 
         guard error == nil else {
-            print("peripheralShared encountered error: \(String(describing: error))")
             cancelConnectionIfNeeded(for: peripheral)
             return
         }
 
         guard let services = peripheral.services, services.count > 0 else {
-            print("peripheralShared peripheral.services \(String(describing: peripheral.services))")
             peripheralsToReadConfigurationsFrom.remove(peripheral)
             cancelConnectionIfNeeded(for: peripheral)
             return
@@ -467,7 +465,6 @@ extension Central: CBPeripheralDelegate {
 
     func peripheralShared(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
                           error: Error?) {
-        print("peripheralShared didDiscoverCharacteristicsFor service: \(service) char \(String(describing: service.characteristics?.first))")
         guard error == nil else {
             cancelConnectionIfNeeded(for: peripheral)
             return
@@ -481,7 +478,6 @@ extension Central: CBPeripheralDelegate {
             if !readingConfigurationCharacteristics.contains(configurationCharacteristic) {
                 readingConfigurationCharacteristics.insert(configurationCharacteristic)
                 peripheral.readValue(for: configurationCharacteristic)
-                print("properties of the read characteristic are: \(configurationCharacteristic.properties)")
                 os_log(
                     "Peripheral (uuid: %@ name: %@) reading value for characteristic: %@ for service: %@",
                     log: bleCentralLog,
@@ -523,7 +519,6 @@ extension Central: CBPeripheralDelegate {
             )
             //needed for Android
             peripheral.writeValue(characteristic.value!, for: characteristic, type: .withoutResponse)
-            print("characteristic value: \(String(describing: characteristic.value!))")
         }
         readingConfigurationCharacteristics.remove(characteristic)
 
@@ -538,7 +533,6 @@ extension Central: CBPeripheralDelegate {
             }
             var identifier = String(bytes: value, encoding: .unicode)
             identifier = value.compactMap { String(format: "%02x", $0) }.joined()
-            print("NSString ID: \(String(describing: identifier))")
             addNewContactEvent(with: String(identifier!))
             cancelConnectionIfNeeded(for: peripheral)
 
