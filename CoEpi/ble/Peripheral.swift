@@ -1,13 +1,24 @@
 import Foundation
 import CoreBluetooth
 import os.log
+import RxRelay
 
 protocol PeripheralDelegate: class {
     func onPeripheralStateChange(description: String)
     func onPeripheralContact(_ contact: CEN)
 }
 
-class Peripheral: NSObject {
+protocol PeripheralReactive {
+    var peripheralState: PublishRelay<String> { get }
+    var peripheralContactSent: PublishRelay<ContactOld> { get }
+    var peripheralDelegate: PeripheralDelegate? {get set}
+}
+
+class PeripheralImpl: NSObject, PeripheralReactive {
+    let peripheralState: PublishRelay<String> = PublishRelay()
+    let peripheralContactSent: PublishRelay<ContactOld> = PublishRelay()
+    var peripheralDelegate: PeripheralDelegate?
+    
     private weak var delegate: PeripheralDelegate?
 
     private var peripheralManager: CBPeripheralManager!
@@ -15,9 +26,7 @@ class Peripheral: NSObject {
     private let serviceUuid: CBUUID = CBUUID(nsuuid: Uuids.service)
     private let characteristicUuid: CBUUID = CBUUID(nsuuid: Uuids.characteristic)
 
-    init(delegate: PeripheralDelegate) {
-        self.delegate = delegate
-
+    override init() {
         super.init()
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
@@ -52,22 +61,22 @@ class Peripheral: NSObject {
     }
 }
 
-extension Peripheral: CBPeripheralManagerDelegate {
+extension PeripheralImpl: CBPeripheralManagerDelegate {
 
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         switch peripheral.state {
         case .unknown:
-            report(state: "peripheral.state unknown")
+            report(state: "unknown")
         case .unsupported:
-            report(state: "peripheral.state unsupported")
+            report(state: "unsupported")
         case .unauthorized:
-            report(state: "peripheral.state unauthorized")
+            report(state: "unauthorized")
         case .resetting:
-            report(state: "peripheral.state resetting")
+            report(state: "resetting")
         case .poweredOff:
-            report(state: "peripheral.state poweredOff")
+            report(state: "poweredOff")
         case .poweredOn:
-            report(state: "peripheral.state poweredOn")
+            report(state: "poweredOn")
             startAdvertising()
         @unknown default:
             os_log("Peripheral state: unknown")
@@ -76,6 +85,8 @@ extension Peripheral: CBPeripheralManagerDelegate {
 
     private func report(state: String) {
         delegate?.onPeripheralStateChange(description: state)
+        //Reactive
+        peripheralState.accept(state)
     }
 
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
@@ -106,24 +117,25 @@ extension Peripheral: CBPeripheralManagerDelegate {
         request.value = CENData
         peripheral.respond(to: request, withResult: .success)
         
+        addNewContactEvent(with: currentCENKey.cenKey!)
+        
         os_log("Peripheral manager did respond to read request with result: %d", log: blePeripheralLog, CBATTError.success.rawValue)
     }
     
-    /* TODO: Later
+
     private func addNewContactEvent(with identifier: String) {
         print("PERIPHERAL: addNewContactEvent called")
-        delegate?.onPeripheralContact(CEN(
-            identifier: identifier,
-            timestamp: Date(),
-            // TODO preference, from React Native
-            isPotentiallyInfectious: true
-        ))
+        delegate?.onPeripheralContact(CEN(CEN: identifier))
+        //Reactive
+        peripheralContactSent.accept(ContactOld(
+                   identifier: identifier,
+                   timestamp: Date(),
+                   // TODO preference
+                   isPotentiallyInfectious: true
+               ))
+        
     }
-    */
+    
 }
-//
-//struct Contact {
-//    let identifier: UUID
-//    let timestamp: Date
-//    let isPotentiallyInfectious: Bool
-//}
+
+

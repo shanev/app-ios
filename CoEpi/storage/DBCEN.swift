@@ -1,4 +1,5 @@
 import RealmSwift
+import Foundation
 
 final class DBCEN : Object {
     @objc dynamic var CEN: String = ""

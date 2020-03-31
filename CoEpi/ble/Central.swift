@@ -4,14 +4,28 @@ import Foundation
 import CoreBluetooth
 import os.log
 import UIKit
+import RxRelay
+
+struct DetectedPeripheral {
+    let uuid: UUID
+    let name: String?
+}
 
 protocol CentralDelegate: class {
     func onDiscovered(peripheral: CBPeripheral)
     func onCentralContact(_ contact: CEN)
 }
 
-class Central: NSObject {
-    private weak var delegate: CentralDelegate?
+protocol CentralReactive {
+    var discovery: PublishRelay<DetectedPeripheral> { get }
+    var centralContactReceived: PublishRelay<ContactOld> { get }
+    var delegate: CentralDelegate? {get set}
+}
+
+class CentralImpl: NSObject, CentralReactive {
+    let discovery: PublishRelay<DetectedPeripheral> = PublishRelay()
+    let centralContactReceived: PublishRelay<ContactOld> = PublishRelay()
+    weak var delegate: CentralDelegate?
 
     private var centralManager: CBCentralManager!
 
@@ -86,8 +100,12 @@ class Central: NSObject {
     }
     #endif
 
-    init(delegate: CentralDelegate) {
-        self.delegate = delegate
+//    init(delegate: CentralDelegate) {
+//        super.init()
+//        self.delegate = delegate
+//    }
+    
+    override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
 
@@ -103,6 +121,8 @@ class Central: NSObject {
         )
         #endif
     }
+    
+    
 
     // MARK: - Notifications
 
@@ -261,7 +281,7 @@ class Central: NSObject {
 
 }
 
-extension Central: CBCentralManagerDelegate {
+extension CentralImpl: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         os_log("Central manager did update state: %d", log: bleCentralLog, central.state.rawValue)
@@ -281,6 +301,7 @@ extension Central: CBCentralManagerDelegate {
 //        os_log("advertisementData: %@", log: bleCentralLog, advertisementData)
 
         if !discoveredPeripherals.contains(peripheral) {
+            discovery.accept(DetectedPeripheral(uuid: peripheral.identifier, name: peripheral.name))
             os_log(
                 "Central manager did discover new peripheral (uuid: %@ name: %@) RSSI: %d",
                 log: bleCentralLog,
@@ -354,7 +375,14 @@ extension Central: CBCentralManagerDelegate {
         // Create Contact Record
         delegate?.onCentralContact(CEN(
             CEN: identifier,
-            timestamp: Int(Date().timeIntervalSince1970)
+            timestamp: Int64(Date().timeIntervalSince1970)
+        ))
+        //Reactive
+        centralContactReceived.accept(ContactOld(
+            identifier: identifier,
+            timestamp: Date(),
+            // TODO preference
+            isPotentiallyInfectious: true
         ))
     }
 
@@ -401,7 +429,7 @@ extension Central: CBCentralManagerDelegate {
 }
 
 
-extension Central: CBPeripheralDelegate {
+extension CentralImpl: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }

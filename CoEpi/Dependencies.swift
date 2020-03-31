@@ -11,8 +11,8 @@ class Dependencies {
         container.register { OnboardingViewModel() }
         container.register { HealthQuizViewModel(container: container) }
 
-        container.register(.eagerSingleton) { CentralImpl() as Central }
-        container.register(.eagerSingleton) { PeripheralImpl() as Peripheral }
+        container.register(.eagerSingleton) { CentralImpl() as CentralReactive }
+        container.register(.eagerSingleton) { PeripheralImpl() as PeripheralReactive }
 
         container.register { DebugViewModel(peripheral: try container.resolve(),
                                             central: try container.resolve()) }

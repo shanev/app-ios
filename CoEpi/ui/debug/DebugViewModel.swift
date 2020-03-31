@@ -5,7 +5,7 @@ class DebugViewModel {
 
     let debugEntries: Driver<[DebugEntryViewData]>
 
-    init(peripheral: Peripheral, central: Central) {
+    init(peripheral: PeripheralReactive, central: CentralReactive) {
 
         let receivedContacts = central
             .centralContactReceived
@@ -35,7 +35,7 @@ class DebugViewModel {
         debugEntries = combined
             .map { peripheralState, peripheralContactSent, receivedContacts, discovered in
                 let peripheralState = peripheralState ?? ""
-                let peripheralContactSent = peripheralContactSent?.identifier.uuidString ?? "None"
+                let peripheralContactSent = peripheralContactSent?.identifier ?? "None"
                 return [
                     .Header("Peripheral state"),
                     .Item(peripheralState),
@@ -43,7 +43,7 @@ class DebugViewModel {
                     .Item(peripheralContactSent),
                     .Header("Received contacts")]
                     + receivedContacts.map{
-                        .Item($0.identifier.uuidString)
+                        .Item($0.identifier)
                     }
                     + [.Header("Discovered devices")]
                     + discovered.map{ .Item($0.debugIdentifier) }
