@@ -13,13 +13,17 @@ class Dependencies {
         container.register { AlertsViewModel(container: container) }
 
         container.register(.eagerSingleton) { CentralImpl() as CentralReactive }
-        container.register(.eagerSingleton) { PeripheralImpl() as PeripheralReactive }
+        container.register(.eagerSingleton) { PeripheralImpl(container: container) as PeripheralReactive }
 
         container.register { DebugViewModel(peripheral: try container.resolve(),
                                             central: try container.resolve()) }
 
         container.register(.singleton) { RealmProvider() }
         container.register(.singleton) { RealmContactRepo(realmProvider: try container.resolve()) as ContactRepo }
+        container.register(.singleton) { RealmCENRepo(realmProvider: try container.resolve()) as CENRepo }
+        container.register(.singleton) { RealmCENReportRepo(realmProvider: try container.resolve()) as CENReportRepo }
+        container.register(.singleton) { RealmCENKeyRepo(realmProvider: try container.resolve()) as CENKeyRepo }
+
 
         container.register(.singleton) { SymptomRepoImpl() as SymptomRepo }
         container.register(.singleton) { AlertRepoImpl() as AlertRepo }

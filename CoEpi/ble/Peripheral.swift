@@ -1,5 +1,6 @@
-import Foundation
 import CoreBluetooth
+import Dip
+import Foundation
 import os.log
 import RxRelay
 
@@ -27,7 +28,13 @@ class PeripheralImpl: NSObject, PeripheralReactive {
     private let serviceUuid: CBUUID = CBUUID(nsuuid: Uuids.service)
     private let characteristicUuid: CBUUID = CBUUID(nsuuid: Uuids.characteristic)
 
-    override init() {
+    private let cenRepo: CENRepo
+    private let cenKeyRepo: CENKeyRepo
+
+    init(container: DependencyContainer) {
+        self.cenRepo = try! container.resolve()
+        self.cenKeyRepo = try! container.resolve()
+
         super.init()
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
@@ -108,8 +115,8 @@ extension PeripheralImpl: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         os_log("Peripheral manager did receive read request: %@", log: blePeripheralLog, request.description)
         
-        let currentCENKey = CENKey.generateAndStoreCENKey()
-        let CENData: Data = CEN.generateCENData(CENKey: currentCENKey.cenKey!)
+        let currentCENKey = cenKeyRepo.generateAndStoreCENKey()
+        let CENData: Data = cenRepo.generateCENData(CENKey: currentCENKey.cenKey!)
         //*** Scenario 1: https://docs.google.com/document/d/1f65V3PI214-uYfZLUZtm55kdVwoazIMqGJrxcYNI4eg/edit#
         // iOS - Central + iOS - Peripheral -- so commenting out addNewContact
         //addNewContactEvent(with: identifier)
