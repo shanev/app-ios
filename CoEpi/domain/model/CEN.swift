@@ -1,6 +1,6 @@
 import Foundation
 
-struct CEN {
+struct CEN: Codable {
     let CEN: String
     let timestamp: Int64
 

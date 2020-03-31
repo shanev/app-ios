@@ -1,7 +1,7 @@
 import RealmSwift
 import Foundation
 
-final class DBCENReport : Object {
+final class RealmCENReport : Object {
 
     // CENReportID is a local internal attribute only
     @objc dynamic var CENReportID: String = ""
@@ -19,21 +19,17 @@ final class DBCENReport : Object {
 
     // isuser is true when the reporter is this user
     @objc dynamic var isUser: Bool = false
-    
+
     override static func primaryKey() -> String? {
         return "CENReportID"
     }
-    
-    required init(_report: String, _cenKeys: String, _ts: Int64) {
-        self.CENReportID = NSUUID().uuidString
-        self.report = _report
-        self.CENKeys = _cenKeys
-        self.reportTimestamp = _ts
-    }
-    
-    required init() {
-        //fatalError("init() has not been implemented")
-        self.CENReportID = NSUUID().uuidString
-        self.reportTimestamp = 0
+
+    convenience init(_ report: CENReport) {
+        self.init()
+
+        self.CENReportID = report.CENReportID
+        self.report = report.report
+        self.CENKeys = report.CENKeys
+        self.reportTimestamp = report.reportTimestamp
     }
 }
