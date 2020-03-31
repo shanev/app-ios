@@ -19,7 +19,6 @@
 		30EF95422432A5D0007D61C7 /* CENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF953B2432A5CF007D61C7 /* CENKey.swift */; };
 		30EF95432432A5D0007D61C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF953C2432A5CF007D61C7 /* Utils.swift */; };
 		30EF95462432C8D8007D61C7 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30EF95452432C8D8007D61C7 /* CryptoSwift */; };
-		30EF95492432D7E9007D61C7 /* CoEpiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95482432D7E9007D61C7 /* CoEpiAPI.swift */; };
 		8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDC6242B9AC900A63DD5 /* RxSwift */; };
 		8486BDCB242B9AC900A63DD5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCA242B9AC900A63DD5 /* RxRelay */; };
 		8486BDCD242B9AC900A63DD5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDCC242B9AC900A63DD5 /* RxCocoa */; };
@@ -742,7 +741,6 @@
 				30EF953324329E8D007D61C7 /* RootWireframe.swift in Sources */,
 				30EF953F2432A5D0007D61C7 /* DBCEN.swift in Sources */,
 				84A4B9AD242CA51D00516F3B /* RealmContact.swift in Sources */,
-				30EF95492432D7E9007D61C7 /* CoEpiAPI.swift in Sources */,
 				84A4B9B6242CA6EE00516F3B /* Contact.swift in Sources */,
 				8486BDE0242BC8B600A63DD5 /* HomeViewModel.swift in Sources */,
 				849CEFA3242FEE23003F9284 /* UIColor+Hex.swift in Sources */,
