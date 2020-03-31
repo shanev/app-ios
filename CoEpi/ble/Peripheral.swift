@@ -11,15 +11,13 @@ protocol PeripheralDelegate: class {
 protocol PeripheralReactive {
     var peripheralState: PublishRelay<String> { get }
     var peripheralContactSent: PublishRelay<ContactOld> { get }
-    var peripheralDelegate: PeripheralDelegate? {get set}
+    var delegate: PeripheralDelegate? {get set}
 }
 
 class PeripheralImpl: NSObject, PeripheralReactive {
     let peripheralState: PublishRelay<String> = PublishRelay()
     let peripheralContactSent: PublishRelay<ContactOld> = PublishRelay()
-    var peripheralDelegate: PeripheralDelegate?
-    
-    private weak var delegate: PeripheralDelegate?
+    weak var delegate: PeripheralDelegate?
 
     private var peripheralManager: CBPeripheralManager!
 

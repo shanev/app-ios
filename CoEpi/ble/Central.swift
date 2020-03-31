@@ -154,7 +154,6 @@ class CentralImpl: NSObject, CentralReactive {
         let services = servicesToScan()
         centralManager.scanForPeripherals(
             withServices: services,
-            //withServices: nil
             options: [CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(booleanLiteral: true)]
         )
         os_log("Central manager scanning for peripherals with services=%@", log: bleCentralLog, services ?? [])
