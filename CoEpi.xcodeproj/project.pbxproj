@@ -14,8 +14,6 @@
 		30EF953024313F61007D61C7 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952B24313F61007D61C7 /* Roboto-Regular.ttf */; };
 		30EF953124313F61007D61C7 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952C24313F61007D61C7 /* LICENSE.txt */; };
 		30EF953224313F61007D61C7 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EF952D24313F61007D61C7 /* Roboto-Bold.ttf */; };
-		30EF95552432DF4D007D61C7 /* DBCENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF954E2432DF4D007D61C7 /* DBCENKey.swift */; };
-		30EF95572432DF4D007D61C7 /* CENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95502432DF4D007D61C7 /* CENKey.swift */; };
 		30EF95582432DF4D007D61C7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF95512432DF4D007D61C7 /* Utils.swift */; };
 		30EF955B2432E009007D61C7 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30EF955A2432E009007D61C7 /* CryptoSwift */; };
 		8486BDC7242B9AC900A63DD5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8486BDC6242B9AC900A63DD5 /* RxSwift */; };
@@ -77,6 +75,10 @@
 		CE6B7ABD243324BA00C42280 /* RealmCENReportRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7ABC243324BA00C42280 /* RealmCENReportRepo.swift */; };
 		CE6B7ABF2433252300C42280 /* CENReportRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7ABE2433252300C42280 /* CENReportRepo.swift */; };
 		CE6B7AC1243325F200C42280 /* RealmCENReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7AC0243325F200C42280 /* RealmCENReport.swift */; };
+		CE6B7AC3243326FD00C42280 /* CENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7AC2243326FD00C42280 /* CENKey.swift */; };
+		CE6B7AC52433273200C42280 /* RealmCENKeyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7AC42433273200C42280 /* RealmCENKeyRepo.swift */; };
+		CE6B7AC72433279000C42280 /* CENKeyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7AC62433279000C42280 /* CENKeyRepo.swift */; };
+		CE6B7AC9243327FF00C42280 /* RealmCENKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B7AC8243327FF00C42280 /* RealmCENKey.swift */; };
 		CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */; };
 		CE98BE9B242DDCFD00EFB67A /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98BE9A242DDCFD00EFB67A /* QuestionCell.swift */; };
 		CE98BE9F242DE02900EFB67A /* HealthQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE98BE9E242DE02900EFB67A /* HealthQuizViewController.xib */; };
@@ -136,8 +138,6 @@
 		30EF952B24313F61007D61C7 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		30EF952C24313F61007D61C7 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		30EF952D24313F61007D61C7 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		30EF954E2432DF4D007D61C7 /* DBCENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCENKey.swift; sourceTree = "<group>"; };
-		30EF95502432DF4D007D61C7 /* CENKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CENKey.swift; sourceTree = "<group>"; };
 		30EF95512432DF4D007D61C7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		324F4D7DC6C28946706D180E /* Pods-CoEpiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpiTests.release.xcconfig"; path = "Target Support Files/Pods-CoEpiTests/Pods-CoEpiTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DB73EEFE0BAFE71BAB85604 /* Pods-CoEpi-CoEpiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoEpi-CoEpiUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoEpi-CoEpiUITests/Pods-CoEpi-CoEpiUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +203,10 @@
 		CE6B7ABC243324BA00C42280 /* RealmCENReportRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCENReportRepo.swift; sourceTree = "<group>"; };
 		CE6B7ABE2433252300C42280 /* CENReportRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CENReportRepo.swift; sourceTree = "<group>"; };
 		CE6B7AC0243325F200C42280 /* RealmCENReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCENReport.swift; sourceTree = "<group>"; };
+		CE6B7AC2243326FD00C42280 /* CENKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CENKey.swift; sourceTree = "<group>"; };
+		CE6B7AC42433273200C42280 /* RealmCENKeyRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCENKeyRepo.swift; sourceTree = "<group>"; };
+		CE6B7AC62433279000C42280 /* CENKeyRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CENKeyRepo.swift; sourceTree = "<group>"; };
+		CE6B7AC8243327FF00C42280 /* RealmCENKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCENKey.swift; sourceTree = "<group>"; };
 		CE98BE98242DDCBC00EFB67A /* HealthQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthQuizViewModel.swift; sourceTree = "<group>"; };
 		CE98BE9A242DDCFD00EFB67A /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		CE98BE9E242DE02900EFB67A /* HealthQuizViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthQuizViewController.xib; sourceTree = "<group>"; };
@@ -280,16 +284,6 @@
 			path = Roboto;
 			sourceTree = "<group>";
 		};
-		30EF954A2432DF4D007D61C7 /* storage */ = {
-			isa = PBXGroup;
-			children = (
-				30EF954E2432DF4D007D61C7 /* DBCENKey.swift */,
-				30EF95502432DF4D007D61C7 /* CENKey.swift */,
-				30EF95512432DF4D007D61C7 /* Utils.swift */,
-			);
-			path = storage;
-			sourceTree = "<group>";
-		};
 		44CF83504F0FD8582FEC242D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,7 +332,6 @@
 		849DFE642427D3750008ED65 /* CoEpi */ = {
 			isa = PBXGroup;
 			children = (
-				30EF954A2432DF4D007D61C7 /* storage */,
 				84A4B9B3242CA6CC00516F3B /* domain */,
 				84A4B9A2242C9C8B00516F3B /* repo */,
 				84BF972524280ECF001ADD6B /* ble */,
@@ -376,11 +369,13 @@
 			isa = PBXGroup;
 			children = (
 				84A4B9B0242CA66A00516F3B /* realm */,
+				30EF95512432DF4D007D61C7 /* Utils.swift */,
 				84A4B9A3242CA24100516F3B /* ContactRepo.swift */,
 				84A4B9B9242CE3AF00516F3B /* SymptomRepo.swift */,
 				CE626E112430F348000DB8E7 /* AlertRepo.swift */,
 				CE6B7AB2243312FA00C42280 /* CENRepo.swift */,
 				CE6B7ABE2433252300C42280 /* CENReportRepo.swift */,
+				CE6B7AC62433279000C42280 /* CENKeyRepo.swift */,
 			);
 			path = repo;
 			sourceTree = "<group>";
@@ -391,6 +386,7 @@
 				84A4B9AC242CA51D00516F3B /* RealmContact.swift */,
 				CE6B7AB62433166600C42280 /* RealmCEN.swift */,
 				CE6B7AC0243325F200C42280 /* RealmCENReport.swift */,
+				CE6B7AC8243327FF00C42280 /* RealmCENKey.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -404,6 +400,7 @@
 				84A4B9B1242CA67E00516F3B /* RealmContactRepo.swift */,
 				CE6B7AB42433156900C42280 /* RealmCENRepo.swift */,
 				CE6B7ABC243324BA00C42280 /* RealmCENReportRepo.swift */,
+				CE6B7AC42433273200C42280 /* RealmCENKeyRepo.swift */,
 			);
 			path = realm;
 			sourceTree = "<group>";
@@ -424,6 +421,7 @@
 				CE626E132430F3C5000DB8E7 /* Alert.swift */,
 				CE6B7AB8243316B800C42280 /* CEN.swift */,
 				CE6B7ABA2433244700C42280 /* CENReport.swift */,
+				CE6B7AC2243326FD00C42280 /* CENKey.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -812,8 +810,10 @@
 				CE626E0B2430A9A9000DB8E7 /* AlertCell.swift in Sources */,
 				84A4B9AD242CA51D00516F3B /* RealmContact.swift in Sources */,
 				84A4B9B6242CA6EE00516F3B /* Contact.swift in Sources */,
+				CE6B7AC9243327FF00C42280 /* RealmCENKey.swift in Sources */,
 				8486BDE0242BC8B600A63DD5 /* HomeViewModel.swift in Sources */,
 				849CEFA3242FEE23003F9284 /* UIColor+Hex.swift in Sources */,
+				CE6B7AC52433273200C42280 /* RealmCENKeyRepo.swift in Sources */,
 				84FA00FB2427ED1900318104 /* OnboardingViewController.swift in Sources */,
 				84A4B9AF242CA5E600516F3B /* RealmProvider.swift in Sources */,
 				CE6B7AC1243325F200C42280 /* RealmCENReport.swift in Sources */,
@@ -840,6 +840,7 @@
 				D41B0D1B242F5BDA00A50447 /* StringMarkupAttributedExtension.swift in Sources */,
 				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
 				D41B0CDD242E467800A50447 /* GradientView.swift in Sources */,
+				CE6B7AC72433279000C42280 /* CENKeyRepo.swift in Sources */,
 				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
 				CE98BE99242DDCBC00EFB67A /* HealthQuizViewModel.swift in Sources */,
 				84BF972424280ABA001ADD6B /* RootWireframe.swift in Sources */,
@@ -848,8 +849,7 @@
 				84BF973124281082001ADD6B /* Types+DataRepresentable.swift in Sources */,
 				8486BDD6242BA28C00A63DD5 /* DebugViewModel.swift in Sources */,
 				CE98BEA1242DE23400EFB67A /* HealthQuizViewController.swift in Sources */,
-				30EF95552432DF4D007D61C7 /* DBCENKey.swift in Sources */,
-				30EF95572432DF4D007D61C7 /* CENKey.swift in Sources */,
+				CE6B7AC3243326FD00C42280 /* CENKey.swift in Sources */,
 				84A4B9B8242CC97600516F3B /* RealmRepo.swift in Sources */,
 				849CEFA2242FEDE7003F9284 /* Theme.swift in Sources */,
 				CE6B7AB52433156900C42280 /* RealmCENRepo.swift in Sources */,

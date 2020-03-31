@@ -1,36 +1,39 @@
-import Foundation
 import CryptoKit
+import Foundation
 import RealmSwift
 import Security
 
-struct CENKey : Codable {
-    var timestamp: Int64 = Int64(Date().timeIntervalSince1970)
-    var cenKey: String?
-    
+class RealmCENKeyRepo: CENKeyRepo, RealmRepo {
+    var realm: Realm
+
     //static var cenKey: String = ""
-    static var cenKeyTimestamp: Int64 = 0
-    
-    static func generateAndStoreCENKey() -> CENKey {
+    var cenKeyTimestamp: Int64 = 0
+
+    init(realmProvider: RealmProvider) {
+        realm = realmProvider.realm
+    }
+
+    func generateAndStoreCENKey() -> CENKey {
         //Retrieve last cenKey and cenKeyTimestamp from CENKey
         let latestCENKey = getLatestCENKey()
         let curTimestamp = Int64(Date().timeIntervalSince1970)
         if ( ( cenKeyTimestamp == 0 ) || ( roundedTimestamp(ts: curTimestamp) > roundedTimestamp(ts: cenKeyTimestamp) ) ) {
             //generate a new AES Key and store it in local storage
-            
+
             //generate base64string representation of key
             let cenKeyString = computeSymmetricKey()
             let cenKeyTimestamp = curTimestamp
-            
+
             //Create CENKey and insert/save to Realm
-            let newCENKey = CENKey(timestamp: cenKeyTimestamp, cenKey: cenKeyString)
-            newCENKey.insert()
+            let newCENKey = CENKey(cenKey: cenKeyString, timestamp: cenKeyTimestamp)
+            let _ = insert(key: newCENKey)
             return newCENKey
         } else {
             return latestCENKey!
         }
     }
 
-    static func computeSymmetricKey() -> String? {
+    func computeSymmetricKey() -> String? {
         var keyData = Data(count: 32) // 32 bytes === 256 bits
         let keyDataCount = keyData.count
         let result = keyData.withUnsafeMutableBytes {
@@ -43,27 +46,28 @@ struct CENKey : Codable {
             return nil
         }
     }
-    
-    static func getLatestCENKey() -> CENKey? {
+
+    func getLatestCENKey() -> CENKey? {
         let realm = try! Realm()
-        let cenKeysObject = realm.objects(DBCENKey.self).sorted(byKeyPath: "timestamp", ascending: false)
+        let cenKeysObject = realm.objects(RealmCENKey.self).sorted(byKeyPath: "timestamp", ascending: false)
         if cenKeysObject.count == 0 {
             return nil
         } else {
             self.cenKeyTimestamp = cenKeysObject.first?.timestamp ?? Int64(Date().timeIntervalSince1970)
-            return CENKey(timestamp: self.cenKeyTimestamp, cenKey: cenKeysObject[0].CENKey)
+            return CENKey(cenKey: cenKeysObject[0].CENKey, timestamp: self.cenKeyTimestamp)
         }
     }
-    
-    static func getCENKeys(limit: Int64) -> [CENKey]? {
+
+    func getCENKeys(limit: Int64) -> [CENKey]? {
         let realm = try! Realm()
-        let cenKeysObject = realm.objects(DBCENKey.self).sorted(byKeyPath: "timestamp", ascending: false)
+        let cenKeysObject = realm.objects(RealmCENKey.self).sorted(byKeyPath: "timestamp", ascending: false)
         if cenKeysObject.count == 0 {
             return []
         } else {
             var retrievedCENKeyList:[CENKey] = []
             for index in 0..<cenKeysObject.count {
-                retrievedCENKeyList.append(CENKey(timestamp: cenKeysObject[index].timestamp, cenKey: cenKeysObject[index].CENKey))
+                retrievedCENKeyList.append(CENKey(cenKey: cenKeysObject[index].CENKey,
+                                                  timestamp: cenKeysObject[index].timestamp))
                 if retrievedCENKeyList.count >= limit {
                     break
                 }
@@ -71,17 +75,19 @@ struct CENKey : Codable {
             return retrievedCENKeyList
         }
     }
-    
-    func insert() {
+
+    func insert(key: CENKey) -> Bool {
         let realm = try! Realm()
-        let sameObject = realm.objects(DBCENKey.self).filter("timestamp = %@", self.timestamp)
+        let sameObject = realm.objects(RealmCENKey.self).filter("timestamp = %@", key.timestamp)
         if sameObject.count > 0 {
             //Duplicate Entry: NOT inserting
+            return false
         } else {
-            let newCENKey = DBCENKey(_ts: self.timestamp, _cenKey: self.cenKey!)
+            let newCENKey = RealmCENKey(key)
             try! realm.write {
                 realm.add(newCENKey)
             }
+            return true
         }
     }
 }
