@@ -7,7 +7,7 @@ class CenKeysFetcher {
 
     lazy var keys: Observable<[CENKey]> = Observable<Int>
         // TODO 10 secs just for testing
-        .timer(.seconds(0), period: .seconds(10), scheduler: MainScheduler.instance)
+        .timer(.seconds(0), period: .seconds(60), scheduler: MainScheduler.instance)
         .flatMapLatest { [api] _ in
             api.getCenKeys()
         }
