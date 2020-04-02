@@ -4,6 +4,7 @@ import RealmSwift
 protocol CENDao {
     func insert(cen: CEN) -> Bool
     func loadAllCENRecords() -> [CEN]?
+    func match(start: Int64, end: Int64, hexEncodedCENs: [String]) -> [CEN]
 }
 
 class RealmCENDao: CENDao, RealmDao {
@@ -26,6 +27,14 @@ class RealmCENDao: CENDao, RealmDao {
             //duplicate entry: skipping
             return false
         }
+    }
+
+    func match(start: Int64, end: Int64, hexEncodedCENs: [String]) -> [CEN] {
+        realm.objects(RealmCEN.self)
+            .filter("timestamp >= %d", start)
+            .filter("timestamp <= %d", end)
+            .filter(NSPredicate(format: "CEN IN %@", hexEncodedCENs))
+            .map { CEN(CEN: $0.CEN, timestamp: $0.timestamp) }
     }
 
     func loadAllCENRecords() -> [CEN]? {

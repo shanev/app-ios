@@ -8,7 +8,9 @@ import os.log
 
 protocol CoEpiRepo {
     // Infection reports fetched periodically from the API
-    var reports: Observable<[CENReport]> { get }
+//    var reports: Observable<[CENReport]> { get }
+    // NOTE TEMPORARILY changed to CENKeys, since we only want to test exposure matching
+    var reports: Observable<[CENKey]> { get }
 
     // Store CEN from other device
     func storeObservedCen(cen: CEN)
@@ -18,17 +20,31 @@ protocol CoEpiRepo {
 }
 
 class CoEpiRepoImpl: CoEpiRepo {
-    private let cenReportRepo: CENReportRepo
     private let cenRepo: CENRepo
     private let api: Api
+    private let cenMatcher: CenMatcher
 
-    init(cenReportRepo: CENReportRepo, cenRepo: CENRepo, api: Api) {
-        self.cenReportRepo = cenReportRepo
+    let reports: Observable<[CENKey]>
+
+    // last time (unix timestamp) the CENKeys were requested
+    // TODO has to be updated. In Android it's currently also not updated.
+    private static var lastCENKeysCheck: Int64 = 0
+
+    init(cenRepo: CENRepo, api: Api, keysFetcher: CenKeysFetcher, cenMatcher: CenMatcher) {
         self.cenRepo = cenRepo
         self.api = api
-    }
+        self.cenMatcher = cenMatcher
 
-    lazy var reports: Observable<[CENReport]> = cenReportRepo.reports
+        reports = keysFetcher.keys.map { keys in
+            keys.compactMap { key in
+                if (cenMatcher.hasMatches(key: key, maxTimestamp: CoEpiRepoImpl.lastCENKeysCheck)) {
+                    return key
+                } else {
+                    return nil
+                }
+            }
+        }
+    }
 
     func storeObservedCen(cen: CEN) {
         if !(cenRepo.insert(cen: cen)) {
