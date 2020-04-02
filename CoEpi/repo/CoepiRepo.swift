@@ -35,8 +35,9 @@ class CoEpiRepoImpl: CoEpiRepo {
         self.api = api
         self.cenMatcher = cenMatcher
 
-        reports = keysFetcher.keys.map { keys in
-            keys.compactMap { key in
+        reports = keysFetcher.keys
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .map { keys in keys.compactMap { key in
                 if (cenMatcher.hasMatches(key: key, maxTimestamp: CoEpiRepoImpl.lastCENKeysCheck)) {
                     return key
                 } else {
@@ -44,6 +45,7 @@ class CoEpiRepoImpl: CoEpiRepo {
                 }
             }
         }
+        .observeOn(MainScheduler.instance) // TODO switch to main only in view models
     }
 
     func storeObservedCen(cen: CEN) {
