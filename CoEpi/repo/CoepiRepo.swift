@@ -30,6 +30,8 @@ class CoEpiRepoImpl: CoEpiRepo {
     // TODO has to be updated. In Android it's currently also not updated.
     private static var lastCENKeysCheck: Int64 = 0
 
+    private let disposeBag = DisposeBag()
+
     init(cenRepo: CENRepo, api: Api, keysFetcher: CenKeysFetcher, cenMatcher: CenMatcher) {
         self.cenRepo = cenRepo
         self.api = api
@@ -46,6 +48,9 @@ class CoEpiRepoImpl: CoEpiRepo {
             }
         }
         .observeOn(MainScheduler.instance) // TODO switch to main only in view models
+        .share()
+
+        reports.subscribe().disposed(by: disposeBag)
     }
 
     func storeObservedCen(cen: CEN) {

@@ -72,6 +72,7 @@ class Dependencies {
         container.register(.singleton) { CenMatcherImpl(cenRepo: try container.resolve(),
                                                     cenLogic: try container.resolve()) as CenMatcher }
 
-        let _: CenKeysFetcher = try! container.resolve() // .eagerSingleton appears not to work. Triggering initialization.
+        // .eagerSingleton appears not to work. Triggering initialization.
+        let _: CoEpiRepo = try! container.resolve()
     }
 }
