@@ -47,13 +47,13 @@ class Dependencies {
         container.register(.singleton) { CoEpiRepoImpl(cenRepo: try container.resolve(),
                                                        api: try container.resolve(),
                                                        keysFetcher: try container.resolve(),
-                                                       cenMatcher: try container.resolve()) as CoEpiRepo }
+                                                       cenMatcher: try container.resolve(),
+                                                       cenKeyDao: try container.resolve()) as CoEpiRepo }
     }
 
     private func registerServices(container: DependencyContainer) {
         container.register(.singleton) { ContactReceivedHandler(cenKeyRepo: try container.resolve(),
                                                     cenLogic: try container.resolve()) }
-
     }
 
     private func registerLogic(container: DependencyContainer) {

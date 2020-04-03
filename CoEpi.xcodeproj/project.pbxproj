@@ -53,6 +53,7 @@
 		84A1C0D02437BFE200875DAE /* Date+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C0CF2437BFE200875DAE /* Date+Convenience.swift */; };
 		84A1C0D22437C25B00875DAE /* ReceivedCenReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C0D12437C25B00875DAE /* ReceivedCenReport.swift */; };
 		84A1C0D42437C34400875DAE /* CenReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C0D32437C34400875DAE /* CenReport.swift */; };
+		84A1C0D62437CBBF00875DAE /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1C0D52437CBBF00875DAE /* RepoError.swift */; };
 		84A4B9A7242CA4D500516F3B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 84A4B9A6242CA4D500516F3B /* Realm */; };
 		84A4B9A9242CA4D500516F3B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84A4B9A8242CA4D500516F3B /* RealmSwift */; };
 		84A4B9AF242CA5E600516F3B /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B9AE242CA5E600516F3B /* RealmProvider.swift */; };
@@ -205,6 +206,7 @@
 		84A1C0CF2437BFE200875DAE /* Date+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Convenience.swift"; sourceTree = "<group>"; };
 		84A1C0D12437C25B00875DAE /* ReceivedCenReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCenReport.swift; sourceTree = "<group>"; };
 		84A1C0D32437C34400875DAE /* CenReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenReport.swift; sourceTree = "<group>"; };
+		84A1C0D52437CBBF00875DAE /* RepoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
 		84A4B9AE242CA5E600516F3B /* RealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		84A4B9B7242CC97600516F3B /* RealmDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDao.swift; sourceTree = "<group>"; };
 		84A4B9B9242CE3AF00516F3B /* SymptomRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomRepo.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				CE6B7ABE2433252300C42280 /* CENReportRepo.swift */,
 				CE6B7AC62433279000C42280 /* CENKeyRepo.swift */,
 				849811572436119300EBD1DA /* CoEpiRepo.swift */,
+				84A1C0D52437CBBF00875DAE /* RepoError.swift */,
 			);
 			path = repo;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				84FA00F22427E13000318104 /* Dependencies.swift in Sources */,
 				CE98BE9B242DDCFD00EFB67A /* QuestionCell.swift in Sources */,
 				CE6B7ABD243324BA00C42280 /* RealmCENReportDao.swift in Sources */,
+				84A1C0D62437CBBF00875DAE /* RepoError.swift in Sources */,
 				84FA01002427ED5E00318104 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,9 +33,7 @@ class SymptomRepoImpl: SymptomRepo {
     }
 
     func submitSymptoms(symptoms: [Symptom]) -> Completable {
-        // TODO! fetch keys!
-        fatalError()
-//        coEpiRepo.sendReport(report: symptoms.toCENReport())
+        coEpiRepo.sendReport(report: symptoms.toCENReport())
     }
 }
 

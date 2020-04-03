@@ -14,13 +14,14 @@ protocol CoEpiRepo {
     func storeObservedCen(cen: CEN)
 
     // Send symptoms report
-    func sendReport(report: MyCenReport) -> Completable
+    func sendReport(report: CenReport) -> Completable
 }
 
 class CoEpiRepoImpl: CoEpiRepo {
     private let cenRepo: CENRepo
     private let api: Api
     private let cenMatcher: CenMatcher
+    private let cenKeyDao: CENKeyDao
 
     let reports: Observable<[ReceivedCenReport]>
 
@@ -30,10 +31,11 @@ class CoEpiRepoImpl: CoEpiRepo {
 
     private let disposeBag = DisposeBag()
 
-    init(cenRepo: CENRepo, api: Api, keysFetcher: CenKeysFetcher, cenMatcher: CenMatcher) {
+    init(cenRepo: CENRepo, api: Api, keysFetcher: CenKeysFetcher, cenMatcher: CenMatcher, cenKeyDao: CENKeyDao) {
         self.cenRepo = cenRepo
         self.api = api
         self.cenMatcher = cenMatcher
+        self.cenKeyDao = cenKeyDao
 
         reports = keysFetcher.keys
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -77,7 +79,12 @@ class CoEpiRepoImpl: CoEpiRepo {
         }
     }
 
-    func sendReport(report: MyCenReport) -> Completable {
-        api.postCenReport(cenReport: report)
+    // TODO clarify with Rust lib, does it store the keys or we pass them
+    func sendReport(report: CenReport) -> Completable {
+        if let lastCenKey = cenKeyDao.getLatestCENKey() { // TODO last n keys?
+            return api.postCenReport(cenReport: MyCenReport(report: report, keys: lastCenKey.cenKey))
+        } else {
+            return Completable.error(RepoError.userHasNoCenKeys)
+        }
     }
 }
