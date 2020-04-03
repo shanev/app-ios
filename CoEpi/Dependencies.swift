@@ -39,10 +39,10 @@ class Dependencies {
 
     private func registerRepos(container: DependencyContainer) {
         container.register(.singleton) { SymptomRepoImpl(coEpiRepo: try container.resolve()) as SymptomRepo }
-        container.register(.singleton) { AlertRepoImpl(coEpiRepo: try container.resolve(),
-                                                       cenReportsRepo: try container.resolve()) as AlertRepo }
+        container.register(.singleton) { AlertRepoImpl(cenReportsRepo: try container.resolve()) as AlertRepo }
         container.register(.singleton) { CENRepoImpl(cenDao: try container.resolve()) as CENRepo }
-        container.register(.singleton) { CenReportRepoImpl(cenReportDao: try container.resolve()) as CENReportRepo }
+        container.register(.singleton) { CenReportRepoImpl(cenReportDao: try container.resolve(),
+                                                           coEpiRepo: try container.resolve()) as CENReportRepo }
         container.register(.singleton) { CENKeyRepoImpl(cenKeyDao: try container.resolve()) as CENKeyRepo }
         container.register(.singleton) { CoEpiRepoImpl(cenRepo: try container.resolve(),
                                                        api: try container.resolve(),

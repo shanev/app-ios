@@ -37,6 +37,11 @@ class CoEpiRepoImpl: CoEpiRepo {
 
         reports = keysFetcher.keys
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .do(onNext: { keys in
+                os_log("Fetched keys from API: %@", log: services, type: .debug, "\(keys)")
+            })
+
+            // Filter matching keys
             .map { keys -> [CENKey] in keys.compactMap { key in
                 if (cenMatcher.hasMatches(key: key, maxTimestamp: CoEpiRepoImpl.lastCENKeysCheck)) {
                     return key
@@ -44,6 +49,16 @@ class CoEpiRepoImpl: CoEpiRepo {
                     return nil
                 }
             }}
+
+            .do(onNext: { matchedKeys in
+                if !matchedKeys.isEmpty {
+                    os_log("Matches found for keys: %@", log: services, type: .debug, "\(matchedKeys)")
+                } else {
+                    os_log("No matches found for keys", log: services, type: .debug)
+                }
+            })
+
+            // Retrieve reports for matching keys
             .flatMap { matchedKeys -> Observable<[CENReport]> in
                 let requests: [Observable<CENReport>] = matchedKeys.map {
                     api.getCenReport(cenKey: $0).asObservable()
@@ -58,7 +73,7 @@ class CoEpiRepoImpl: CoEpiRepo {
 
     func storeObservedCen(cen: CEN) {
         if !(cenRepo.insert(cen: cen)) {
-            os_log("Observed CEN already in DB: %@", log: blePeripheralLog, type: .debug, "\(cen)")
+            os_log("Observed CEN already in DB: %@", log: servicesLog, type: .debug, "\(cen)")
         }
     }
 

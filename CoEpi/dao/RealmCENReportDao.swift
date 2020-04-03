@@ -1,6 +1,7 @@
 import Foundation
 import RealmSwift
 import RxSwift
+import os.log
 
 protocol CENReportDao {
     var reports: Observable<[CENReport]> { get }
@@ -34,6 +35,7 @@ class RealmCENReportDao: CENReportDao, RealmDao {
     func insert(report: CENReport) -> Bool {
         let result = realm.objects(RealmCENReport.self).filter("id = %@", report.id)
         if result.count == 0 {
+            os_log("Report didn't exist in db, inserting: %@", type: .debug, report.description)
             let newCENReport = RealmCENReport(report)
             write {
                 realm.add(newCENReport)
