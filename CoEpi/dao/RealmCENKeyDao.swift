@@ -20,7 +20,7 @@ class RealmCENKeyDao: RealmDao, CENKeyDao {
     }
 
     func generateAndStoreCENKey() -> CENKey {
-        let curTimestamp = Int64(Date().timeIntervalSince1970)
+        let curTimestamp = Date().coEpiTimestamp
 
         if let latestCenKey = getLatestCENKey() {
             if (cenLogic.shouldGenerateNewCenKey(curTimestamp: curTimestamp, cenKeyTimestamp: latestCenKey.timestamp)) {

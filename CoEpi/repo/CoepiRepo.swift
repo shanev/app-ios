@@ -38,7 +38,7 @@ class CoEpiRepoImpl: CoEpiRepo {
         reports = keysFetcher.keys
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .do(onNext: { keys in
-                os_log("Fetched keys from API: %@", log: services, type: .debug, "\(keys)")
+                os_log("Fetched keys from API: %@", log: servicesLog, type: .debug, "\(keys)")
             })
 
             // Filter matching keys
@@ -52,9 +52,9 @@ class CoEpiRepoImpl: CoEpiRepo {
 
             .do(onNext: { matchedKeys in
                 if !matchedKeys.isEmpty {
-                    os_log("Matches found for keys: %@", log: services, type: .debug, "\(matchedKeys)")
+                    os_log("Matches found for keys: %@", log: servicesLog, type: .debug, "\(matchedKeys)")
                 } else {
-                    os_log("No matches found for keys", log: services, type: .debug)
+                    os_log("No matches found for keys", log: servicesLog, type: .debug)
                 }
             })
 

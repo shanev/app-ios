@@ -41,6 +41,6 @@ private extension Sequence where Iterator.Element == Symptom {
 
     func toCENReport() -> CENReport {
         // TODO
-        CENReport(id: "123", report: "TODO symptoms -> CENReport", timestamp: Int64(Date().timeIntervalSince1970))
+        CENReport(id: "123", report: "TODO symptoms -> CENReport", timestamp: Date().coEpiTimestamp)
     }
 }

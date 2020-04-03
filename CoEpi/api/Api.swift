@@ -61,7 +61,7 @@ class ApiImpl: Api {
         let stringURL = "https://coepi.wolk.com:8080/cenreport/\(cenKey)"
         return json(.get, stringURL).asSingle().map { result in
             // TODO actual result
-            CENReport(id: "1", report: "report1", timestamp: Int64(Date().timeIntervalSince1970))
+            CENReport(id: "1", report: "report1", timestamp: Date().coEpiTimestamp)
         }
     }
 }
