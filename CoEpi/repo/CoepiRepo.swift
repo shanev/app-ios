@@ -8,9 +8,7 @@ import os.log
 
 protocol CoEpiRepo {
     // Infection reports fetched periodically from the API
-//    var reports: Observable<[CENReport]> { get }
-    // NOTE TEMPORARILY changed to CENKeys, since we only want to test exposure matching
-    var reports: Observable<[CENKey]> { get }
+    var reports: Observable<[CENReport]> { get }
 
     // Store CEN from other device
     func storeObservedCen(cen: CEN)
@@ -24,7 +22,7 @@ class CoEpiRepoImpl: CoEpiRepo {
     private let api: Api
     private let cenMatcher: CenMatcher
 
-    let reports: Observable<[CENKey]>
+    let reports: Observable<[CENReport]>
 
     // last time (unix timestamp) the CENKeys were requested
     // TODO has to be updated. In Android it's currently also not updated.
@@ -39,16 +37,21 @@ class CoEpiRepoImpl: CoEpiRepo {
 
         reports = keysFetcher.keys
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .map { keys in keys.compactMap { key in
+            .map { keys -> [CENKey] in keys.compactMap { key in
                 if (cenMatcher.hasMatches(key: key, maxTimestamp: CoEpiRepoImpl.lastCENKeysCheck)) {
                     return key
                 } else {
                     return nil
                 }
+            }}
+            .flatMap { matchedKeys -> Observable<[CENReport]> in
+                let requests: [Observable<CENReport>] = matchedKeys.map {
+                    api.getCenReport(cenKey: $0).asObservable()
+                }
+                return Observable.merge(requests).toArray().asObservable()
             }
-        }
-        .observeOn(MainScheduler.instance) // TODO switch to main only in view models
-        .share()
+            .observeOn(MainScheduler.instance) // TODO switch to main only in view models
+            .share()
 
         reports.subscribe().disposed(by: disposeBag)
     }
