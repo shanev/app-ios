@@ -4,15 +4,15 @@ import RxSwift
 import os.log
 
 protocol CENReportDao {
-    var reports: Observable<[CENReport]> { get }
+    var reports: Observable<[ReceivedCenReport]> { get }
 
-    func insert(report: CENReport) -> Bool
-    func delete(report: CENReport)
+    func insert(report: ReceivedCenReport) -> Bool
+    func delete(report: ReceivedCenReport)
 }
 
 class RealmCENReportDao: CENReportDao, RealmDao {
     lazy var reports = reportsSubject.asObservable()
-    private let reportsSubject: BehaviorSubject<[CENReport]> = BehaviorSubject(value: [])
+    private let reportsSubject: BehaviorSubject<[ReceivedCenReport]> = BehaviorSubject(value: [])
 
     var notificationToken: NotificationToken? = nil
 
@@ -32,8 +32,8 @@ class RealmCENReportDao: CENReportDao, RealmDao {
         }
     }
 
-    func insert(report: CENReport) -> Bool {
-        let result = realm.objects(RealmCENReport.self).filter("id = %@", report.id)
+    func insert(report: ReceivedCenReport) -> Bool {
+        let result = realm.objects(RealmCENReport.self).filter("id = %@", report.report.id)
         if result.count == 0 {
             os_log("Report didn't exist in db, inserting: %@", type: .debug, report.description)
             let newCENReport = RealmCENReport(report)
@@ -47,8 +47,8 @@ class RealmCENReportDao: CENReportDao, RealmDao {
         }
     }
 
-    func delete(report: CENReport) {
-        let result = realm.objects(RealmCENReport.self).filter("id = %@", report.id)
+    func delete(report: ReceivedCenReport) {
+        let result = realm.objects(RealmCENReport.self).filter("id = %@", report.report.id)
         write {
             realm.delete(result)
         }
@@ -57,7 +57,7 @@ class RealmCENReportDao: CENReportDao, RealmDao {
 
 private extension RealmCENReport {
 
-    func toCENReport() -> CENReport {
-        CENReport(id: id, report: report, timestamp: reportTimestamp)
+    func toCENReport() -> ReceivedCenReport {
+        ReceivedCenReport(report: CenReport(id: id, report: report, timestamp: reportTimestamp))
     }
 }

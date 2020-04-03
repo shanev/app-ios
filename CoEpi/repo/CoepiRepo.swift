@@ -8,13 +8,13 @@ import os.log
 
 protocol CoEpiRepo {
     // Infection reports fetched periodically from the API
-    var reports: Observable<[CENReport]> { get }
+    var reports: Observable<[ReceivedCenReport]> { get }
 
     // Store CEN from other device
     func storeObservedCen(cen: CEN)
 
     // Send symptoms report
-    func sendReport(report: CENReport) -> Completable
+    func sendReport(report: MyCenReport) -> Completable
 }
 
 class CoEpiRepoImpl: CoEpiRepo {
@@ -22,7 +22,7 @@ class CoEpiRepoImpl: CoEpiRepo {
     private let api: Api
     private let cenMatcher: CenMatcher
 
-    let reports: Observable<[CENReport]>
+    let reports: Observable<[ReceivedCenReport]>
 
     // last time (unix timestamp) the CENKeys were requested
     // TODO has to be updated. In Android it's currently also not updated.
@@ -59,8 +59,8 @@ class CoEpiRepoImpl: CoEpiRepo {
             })
 
             // Retrieve reports for matching keys
-            .flatMap { matchedKeys -> Observable<[CENReport]> in
-                let requests: [Observable<CENReport>] = matchedKeys.map {
+            .flatMap { matchedKeys -> Observable<[ReceivedCenReport]> in
+                let requests: [Observable<ReceivedCenReport>] = matchedKeys.map {
                     api.getCenReport(cenKey: $0).asObservable()
                 }
                 return Observable.merge(requests).toArray().asObservable()
@@ -77,7 +77,7 @@ class CoEpiRepoImpl: CoEpiRepo {
         }
     }
 
-    func sendReport(report: CENReport) -> Completable {
+    func sendReport(report: MyCenReport) -> Completable {
         api.postCenReport(cenReport: report)
     }
 }

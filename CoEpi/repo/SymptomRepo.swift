@@ -33,14 +33,16 @@ class SymptomRepoImpl: SymptomRepo {
     }
 
     func submitSymptoms(symptoms: [Symptom]) -> Completable {
-        coEpiRepo.sendReport(report: symptoms.toCENReport())
+        // TODO! fetch keys!
+        fatalError()
+//        coEpiRepo.sendReport(report: symptoms.toCENReport())
     }
 }
 
 private extension Sequence where Iterator.Element == Symptom {
 
-    func toCENReport() -> CENReport {
-        // TODO
-        CENReport(id: "123", report: "TODO symptoms -> CENReport", timestamp: Date().coEpiTimestamp)
+    func toCENReport() -> CenReport {
+        // TODO (has not been specified yet)
+        CenReport(id: "123", report: "TODO symptoms -> CENReport", timestamp: Date().coEpiTimestamp)
     }
 }

@@ -13,7 +13,7 @@ class AlertRepoImpl: AlertRepo {
 
     lazy private(set) var alerts: Observable<[Alert]> = cenReportsRepo.reports.map { reports in
         reports.map {
-            Alert(id: $0.id, exposure: $0.report, report: $0)
+            Alert(id: $0.report.id, exposure: $0.report.report, report: $0)
         }
     }
 

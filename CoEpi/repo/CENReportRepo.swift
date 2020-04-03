@@ -2,10 +2,10 @@ import RxSwift
 import os.log
 
 protocol CENReportRepo {
-    var reports: Observable<[CENReport]> { get }
+    var reports: Observable<[ReceivedCenReport]> { get }
 
-    func insert(report: CENReport) -> Bool
-    func delete(report: CENReport)
+    func insert(report: ReceivedCenReport) -> Bool
+    func delete(report: ReceivedCenReport)
 }
 
 class CenReportRepoImpl: CENReportRepo {
@@ -30,11 +30,11 @@ class CenReportRepoImpl: CENReportRepo {
         }).disposed(by: disposeBag)
     }
 
-    func insert(report: CENReport) -> Bool {
+    func insert(report: ReceivedCenReport) -> Bool {
         cenReportDao.insert(report: report)
     }
 
-    func delete(report: CENReport) {
+    func delete(report: ReceivedCenReport) {
         cenReportDao.delete(report: report)
     }
 }
